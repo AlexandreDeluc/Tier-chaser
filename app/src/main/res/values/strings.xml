@@ -1,4 +1,5 @@
 <resources>
     <string name="app_name">TierChaser</string>
     <string name="subtitle">The Guide of Antique Lovers</string>
+    <string name="description">Find antique objects which are hard to find in a flea market using a simple picture</string>
 </resources>

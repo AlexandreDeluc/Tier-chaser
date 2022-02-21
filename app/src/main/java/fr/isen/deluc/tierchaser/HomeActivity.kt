@@ -1,0 +1,25 @@
+package fr.isen.deluc.tierchaser
+
+import android.content.Intent
+import androidx.appcompat.app.AppCompatActivity
+import android.os.Bundle
+import android.provider.MediaStore
+import fr.isen.deluc.tierchaser.databinding.ActivityHomeBinding
+
+class HomeActivity : AppCompatActivity() {
+    lateinit var binding: ActivityHomeBinding
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        binding=ActivityHomeBinding.inflate(layoutInflater)
+        setContentView(binding.root)
+
+        listenClick()
+    }
+
+    private fun listenClick(){
+        binding.photoBtn.setOnClickListener {
+            val intent = Intent(MediaStore.ACTION_IMAGE_CAPTURE)
+            startActivityForResult(intent, 10)
+        }
+    }
+}
