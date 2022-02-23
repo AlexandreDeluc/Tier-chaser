@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/localizeBtn"
+        android:icon="@drawable/localiser"
+        android:title="Localiser">
+    </item>
+
+    <item
+        android:id="@+id/photoBtn"
+        android:icon="@drawable/app_photo"
+        android:title="Photo">
+    </item>
+
+    <item
+        android:id="@+id/compteBtn"
+        android:icon="@drawable/compte"
+        android:title="Compte">
+    </item>
+
+</menu>

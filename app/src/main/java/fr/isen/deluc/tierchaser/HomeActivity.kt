@@ -10,16 +10,24 @@ class HomeActivity : AppCompatActivity() {
     lateinit var binding: ActivityHomeBinding
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding=ActivityHomeBinding.inflate(layoutInflater)
+        binding = ActivityHomeBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        listenClick()
-    }
-
-    private fun listenClick(){
-        binding.photoBtn.setOnClickListener {
-            val intent = Intent(MediaStore.ACTION_IMAGE_CAPTURE)
-            startActivityForResult(intent, 10)
+        binding.bottomNavigation.setOnNavigationItemSelectedListener { item ->
+            when (item.itemId) {
+                R.id.photoBtn -> {
+                    val intent = Intent(MediaStore.ACTION_IMAGE_CAPTURE)
+                    startActivityForResult(intent, 10)
+                    true
+                }
+                else -> false
+            }
         }
     }
 }
+
+
+
+
+
+
