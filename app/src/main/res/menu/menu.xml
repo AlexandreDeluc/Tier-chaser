@@ -4,19 +4,16 @@
     <item
         android:id="@+id/localizeBtn"
         android:icon="@drawable/localiser"
-        android:title="Localiser">
-    </item>
+        android:title="Fil d'actualité"></item>
 
     <item
         android:id="@+id/photoBtn"
         android:icon="@drawable/app_photo"
-        android:title="Photo">
-    </item>
+        android:title="Appareil Photo"></item>
 
     <item
         android:id="@+id/compteBtn"
         android:icon="@drawable/compte"
-        android:title="Compte">
-    </item>
+        android:title="Carte"></item>
 
 </menu>
