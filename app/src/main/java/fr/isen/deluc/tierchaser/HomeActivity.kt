@@ -20,7 +20,13 @@ class HomeActivity : AppCompatActivity() {
                     startActivityForResult(intent, 10)
                     true
                 }
+                R.id.localisationBtn -> {
+                    val intent = Intent(this, MapsActivity::class.java)
+                    startActivity(intent)
+                    true
+                }
                 else -> false
+
             }
         }
     }

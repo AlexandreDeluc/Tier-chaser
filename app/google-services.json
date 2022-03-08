@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "476295566771",
+    "project_id": "tierchaser",
+    "storage_bucket": "tierchaser.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:476295566771:android:101a1e6b1ced398e2de7c6",
+        "android_client_info": {
+          "package_name": "fr.isen.deluc.tierchaser"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "476295566771-bai0rnvvv813ivgd44nt97lvgtbm9h9u.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDQLMMiSIxyPoU35ygCq2Pf-DP673Qb-lw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "476295566771-bai0rnvvv813ivgd44nt97lvgtbm9h9u.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
