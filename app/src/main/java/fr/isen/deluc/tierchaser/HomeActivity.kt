@@ -8,6 +8,7 @@ import fr.isen.deluc.tierchaser.databinding.ActivityHomeBinding
 
 class HomeActivity : AppCompatActivity() {
     lateinit var binding: ActivityHomeBinding
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityHomeBinding.inflate(layoutInflater)
@@ -23,11 +24,9 @@ class HomeActivity : AppCompatActivity() {
                 else -> false
             }
         }
+
+
+
+
     }
 }
-
-
-
-
-
-

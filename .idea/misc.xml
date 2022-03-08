@@ -3,6 +3,10 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/alexandre.deluc/AndroidStudioProjects/Tier-chaser/app/src/main/res/layout/activity_home.xml" value="0.25416666666666665" />
+        <entry key="..\:/Users/alexandre.deluc/AndroidStudioProjects/Tier-chaser/app/src/main/res/layout/activity_main.xml" value="0.22327898550724637" />
+        <entry key="..\:/Users/alexandre.deluc/AndroidStudioProjects/Tier-chaser/app/src/main/res/layout/fragment_home.xml" value="0.25416666666666665" />
+        <entry key="..\:/Users/alexandre.deluc/AndroidStudioProjects/Tier-chaser/app/src/main/res/menu/menu.xml" value="0.176" />
         <entry key="..\:/Users/alexandre.deluc/AndroidStudioProjects/TierChaser/app/src/main/res/layout/activity_home.xml" value="0.152" />
         <entry key="..\:/Users/alexandre.deluc/AndroidStudioProjects/TierChaser/app/src/main/res/layout/activity_main.xml" value="0.264" />
         <entry key="..\:/Users/alexandre.deluc/AndroidStudioProjects/TierChaser/app/src/main/res/layout/activity_photo.xml" value="0.11676798378926039" />
