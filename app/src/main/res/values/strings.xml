@@ -2,4 +2,13 @@
     <string name="app_name">TierChaser</string>
     <string name="subtitle">The Guide of Antique Lovers</string>
     <string name="description">Find antique objects which are hard to find in a flea market using a simple picture</string>
+
+    /* Fil d'actu */
+    <string name="see_all_markets">SEE ALL MARKETS</string>
+    <string name="market_title">MARKETS OF THE DAY</string>
+    <string name="market_background">Market background</string>
+    <string name="product_image">Product image</string>
+    <string name="product_city">City</string>
+    <string name="product_address">8 rue de Jean Kul</string>
+    <string name="product_date">23/05/2022</string>
 </resources>
