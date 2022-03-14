@@ -36,7 +36,9 @@
         android:layout_marginEnd="8dp"
         app:layout_constraintEnd_toStartOf="@+id/city"
         app:layout_constraintTop_toBottomOf="@+id/productImage"
-        app:srcCompat="@android:drawable/ic_menu_mylocation" />
+        app:srcCompat="@android:drawable/ic_menu_mylocation"
+        tools:ignore="ImageContrastCheck"
+        android:contentDescription="logo description" />
 
     <TextView
         android:id="@+id/address"

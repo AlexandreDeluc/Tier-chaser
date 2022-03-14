@@ -6,7 +6,7 @@ import android.os.PersistableBundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.google.firebase.database.DatabaseReference
+import com.google.firebase.database.*
 
 class ProductListActivity : AppCompatActivity() {
 
@@ -29,7 +29,31 @@ class ProductListActivity : AppCompatActivity() {
 
     private fun getProductData() {
 
+        dbref = FirebaseDatabase.getInstance().getReference("Products")
 
+        dbref.addValueEventListener(object : ValueEventListener {
+            override fun onDataChange(snapshot: DataSnapshot) {
+
+                if (snapshot.exists()) {
+
+                    // boucle sur chaque produit qui sera contenu dans 'productSnapshot'
+                    for (productSnapshot in snapshot.children) {
+
+                        // on récupère le produit actuel
+                        val product = productSnapshot.getValue(ProductModel::class.java)
+                        // on le met dans 'productArrayList'
+                        productArrayList.add(product!!)
+                    }
+                    productRecyclerView.adapter = ProductAdapter(productArrayList)
+                }
+
+            }
+
+            override fun onCancelled(error: DatabaseError) {
+                TODO("Not yet implemented")
+            }
+
+        })
 
     }
 

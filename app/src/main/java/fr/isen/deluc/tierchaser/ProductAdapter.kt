@@ -7,7 +7,8 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 
-class ProductAdapter(private val productList : ArrayList<ProductModel>) : RecyclerView.Adapter<ProductAdapter.ProductViewHolder> {
+class ProductAdapter(private val productList : ArrayList<ProductModel>) :
+    RecyclerView.Adapter<ProductAdapter.ProductViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ProductViewHolder {
 
