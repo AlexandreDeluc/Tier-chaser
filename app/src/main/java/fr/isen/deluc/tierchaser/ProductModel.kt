@@ -1,8 +1,5 @@
 package fr.isen.deluc.tierchaser
 
-class ProductModel {
+import android.media.Image
 
-    // déclaration des champs de la table produits
-    private lateinit var price: String
-
-}
+data class ProductModel (var address : String ?= null, var city : String ?= null, var date : String ?= null, var imageUrl : String)
