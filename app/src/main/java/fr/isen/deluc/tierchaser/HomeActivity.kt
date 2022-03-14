@@ -20,6 +20,12 @@ class HomeActivity : AppCompatActivity() {
                     startActivityForResult(intent, 10)
                     true
                 }
+
+                R.id.filActuBtn -> {
+                    val intent = Intent(this, ProductListActivity::class.java)
+                    startActivity(intent)
+                    true
+                }
                 else -> false
             }
         }
