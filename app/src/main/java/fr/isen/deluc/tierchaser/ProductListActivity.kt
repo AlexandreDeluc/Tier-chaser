@@ -3,9 +3,11 @@ package fr.isen.deluc.tierchaser
 import android.app.Activity
 import android.os.Bundle
 import android.os.PersistableBundle
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.google.android.ads.mediationtestsuite.activities.HomeActivity
 import com.google.firebase.database.*
 
 class ProductListActivity : AppCompatActivity() {
@@ -22,13 +24,14 @@ class ProductListActivity : AppCompatActivity() {
         productRecyclerView.layoutManager = LinearLayoutManager(this)
         productRecyclerView.setHasFixedSize(true)
 
-        productArrayList = arrayListOf<ProductModel>()
+        productArrayList = arrayListOf()
 
         getProductData()
     }
 
     private fun getProductData() {
 
+        // connexion avec la base de données sur la table 'Products'
         dbref = FirebaseDatabase.getInstance().getReference("Products")
 
         dbref.addValueEventListener(object : ValueEventListener {
@@ -50,7 +53,7 @@ class ProductListActivity : AppCompatActivity() {
             }
 
             override fun onCancelled(error: DatabaseError) {
-                TODO("Not yet implemented")
+                Toast.makeText(this@ProductListActivity, error.message, Toast.LENGTH_SHORT).show()
             }
 
         })

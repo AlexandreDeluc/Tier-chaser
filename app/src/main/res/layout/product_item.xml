@@ -38,7 +38,7 @@
         app:layout_constraintTop_toBottomOf="@+id/productImage"
         app:srcCompat="@android:drawable/ic_menu_mylocation"
         tools:ignore="ImageContrastCheck"
-        android:contentDescription="logo description" />
+        android:contentDescription="@string/logo_description" />
 
     <TextView
         android:id="@+id/address"

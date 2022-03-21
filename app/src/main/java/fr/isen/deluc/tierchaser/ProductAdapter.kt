@@ -6,6 +6,7 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 
 class ProductAdapter(private val productList : ArrayList<ProductModel>) :
     RecyclerView.Adapter<ProductAdapter.ProductViewHolder>() {
@@ -25,7 +26,8 @@ class ProductAdapter(private val productList : ArrayList<ProductModel>) :
         holder.address.text = currentItem.address
         holder.city.text = currentItem.city
         holder.date.text = currentItem.date
-
+        holder.image.text = currentItem.imageUrl
+        Glide.with(holder.itemView).load(currentItem).into(holder.itemView.findViewById(R.id.logoLocation))
     }
 
     override fun getItemCount(): Int {
@@ -37,7 +39,7 @@ class ProductAdapter(private val productList : ArrayList<ProductModel>) :
         val address : TextView = itemView.findViewById(R.id.address)
         val city : TextView = itemView.findViewById(R.id.city)
         val date : TextView = itemView.findViewById(R.id.date)
-        val image : ImageView = itemView.findViewById(R.id.productImage)
+        val image : TextView = itemView.findViewById(R.id.productImage)
 
     }
 

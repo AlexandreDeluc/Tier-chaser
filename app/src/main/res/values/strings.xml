@@ -11,4 +11,6 @@
     <string name="product_city">City</string>
     <string name="product_address">8 rue de Jean Kul</string>
     <string name="product_date">23/05/2022</string>
+    <string name="logo_description">logo description</string>
+    <string name="app_logo">Tier Chaser Logo</string>
 </resources>
