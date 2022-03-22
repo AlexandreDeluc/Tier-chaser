@@ -1,14 +1,17 @@
 package fr.isen.deluc.tierchaser
 
 import android.os.Bundle
-import android.util.Log
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.OnMapReadyCallback
 import com.google.android.gms.maps.SupportMapFragment
 import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.MarkerOptions
-import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.database.ktx.database
+import com.google.firebase.ktx.Firebase
+
 import fr.isen.deluc.tierchaser.databinding.ActivityMapsBinding
 
 class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
@@ -16,15 +19,11 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
     private lateinit var mMap: GoogleMap
     private lateinit var binding: ActivityMapsBinding
 
-    private val TAG = "MapsActivity"
-    val db = FirebaseFirestore.getInstance()
-    var arMarkets= arrayListOf<Market>()
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
         binding = ActivityMapsBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
 
         // Obtain the SupportMapFragment and get notified when the map is ready to be used.
         val mapFragment = supportFragmentManager
@@ -32,29 +31,36 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
         mapFragment.getMapAsync(this)
     }
 
+
     override fun onMapReady(googleMap: GoogleMap) {
         mMap = googleMap
 
-        db.collection("markets")
-            .addSnapshotListener { result, e ->
-                if(e != null) {
-                    Log.w(TAG, "Listen failed", e)
-                    return@addSnapshotListener
-                }
-                mMap.clear()
-                arMarkets.clear()
-                arMarkets.addAll(result!!.toObjects(Market::class.java))
+        setNewMarket(mMap)
 
-                for(markets in arMarkets){
-                    val geoPosition = LatLng(markets.latitude, markets.longitude)
-                    mMap.addMarker(MarkerOptions().position(geoPosition).title(markets.name))
-                }
+    }
+
+    private fun setNewMarket(map: GoogleMap){
+
+        val database = Firebase.database("https://tierchaser-default-rtdb.firebaseio.com/").getReference("Markets")
+
+        database.get().addOnSuccessListener {
+
+            Toast.makeText(this,"La base de données a été lu", Toast.LENGTH_SHORT).show()
+
+            if (it.exists()){
+
+                val latitude = it.child("latitude").value as Double
+                val longitude = it.child("longitude").value as Double
+                val name = it.child("name").value.toString()
+
+                val cities = LatLng(latitude, longitude)
+                val zoomLevel = 15f // f : float number
+
+                map.addMarker(MarkerOptions().position(cities).title(name))
+                map.moveCamera(CameraUpdateFactory.newLatLngZoom(cities, zoomLevel))
             }
 
-        //Add a marker in Sidney
-        /*val sydney = LatLng(-34.0, 151.0)
-        mMap.addMarker(MarkerOptions().position(sydney).title("Sidney"))
-        mMap.moveCamera(CameraUpdateFactory.newLatLng(sydney)) //permet de centrer la carte sur un point
-        mMap.animateCamera(CameraUpdateFactory.zoomTo(20f)) //permet de zoomer*/
+        }
+
     }
 }
