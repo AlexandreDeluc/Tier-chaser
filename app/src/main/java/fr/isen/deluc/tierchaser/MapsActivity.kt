@@ -9,6 +9,7 @@ import com.google.android.gms.maps.OnMapReadyCallback
 import com.google.android.gms.maps.SupportMapFragment
 import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.MarkerOptions
+import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.ktx.database
 import com.google.firebase.ktx.Firebase
 
@@ -24,11 +25,10 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
         binding = ActivityMapsBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-
-        // Obtain the SupportMapFragment and get notified when the map is ready to be used.
-        val mapFragment = supportFragmentManager
-            .findFragmentById(R.id.map) as SupportMapFragment
-        mapFragment.getMapAsync(this)
+            // Obtain the SupportMapFragment and get notified when the map is ready to be used.
+            val mapFragment = supportFragmentManager
+                .findFragmentById(R.id.map) as SupportMapFragment
+            mapFragment.getMapAsync(this)
     }
 
 
@@ -41,26 +41,28 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
 
     private fun setNewMarket(map: GoogleMap){
 
-        val database = Firebase.database("https://tierchaser-default-rtdb.firebaseio.com/").getReference("Markets")
+            val database = Firebase.database("https://tierchaser-default-rtdb.firebaseio.com/").getReference("Markets")
 
-        database.get().addOnSuccessListener {
+            database.get().addOnSuccessListener {
 
-            Toast.makeText(this,"La base de données a été lu", Toast.LENGTH_SHORT).show()
+                for (ds in it.children) {
 
-            if (it.exists()){
+                Toast.makeText(this,"La base de données a été lu", Toast.LENGTH_SHORT).show()
 
-                val latitude = it.child("latitude").value as Double
-                val longitude = it.child("longitude").value as Double
-                val name = it.child("name").value.toString()
+                    if (it.exists()) {
 
-                val cities = LatLng(latitude, longitude)
-                val zoomLevel = 15f // f : float number
+                            val latitude = ds.child("latitude").getValue(Double::class.java) as Double
+                            val longitude = ds.child("longitude").getValue(Double::class.java) as Double
+                            val name = ds.child("name").getValue(String::class.java)
 
-                map.addMarker(MarkerOptions().position(cities).title(name))
-                map.moveCamera(CameraUpdateFactory.newLatLngZoom(cities, zoomLevel))
+                            val cities = LatLng(latitude, longitude)
+                            val zoomLevel = 15f // f : float number
+
+                            map.addMarker(MarkerOptions().position(cities).title(name))
+                            map.moveCamera(CameraUpdateFactory.newLatLngZoom(cities, zoomLevel))
+
+                    }
+                }
             }
-
-        }
-
     }
 }
