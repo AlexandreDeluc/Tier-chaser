@@ -2,5 +2,24 @@
     <string name="app_name">TierChaser</string>
     <string name="subtitle">The Guide of Antique Lovers</string>
     <string name="description">Find antique objects which are hard to find in a flea market using a simple picture</string>
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+    
+    // Authentification
+
+    <string name="validForm">The form is valid</string>
+    <string name="invalidForm">The form is invalid</string>
+    <string name="youLogIn">You sign in successfully !</string>
+
+        // Register
+    
+    <string name="createAccount">Create an Account</string>
+    <string name="username">Username</string>
+    <string name="email">Email</string>
+    <string name="password">Password</string>
+    <string name="validateBtn">Validate</string>
+    <string name="alreadyBtn">Already have an account ?</string>
+
+        // Login
+
+    <string name="loginTitle">Login</string>
+    <string name="noAccountBtn">Don\'t have an account ?</string>
 </resources>

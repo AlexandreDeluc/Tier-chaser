@@ -6,17 +6,15 @@
     android:layout_height="match_parent"
     tools:context=".HomeActivity">
 
-    <FrameLayout
-        android:id="@+id/fragmentContainer"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
-
-    </FrameLayout>
+    <TextView
+        android:id="@+id/password_id"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="4dp"
+        android:text="TextView"
+        app:layout_constraintEnd_toEndOf="@+id/email_id"
+        app:layout_constraintStart_toStartOf="@+id/email_id"
+        app:layout_constraintTop_toBottomOf="@+id/email_id" />
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/bottom_navigation"
@@ -27,4 +25,35 @@
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:menu="@menu/menu" />
+
+    <TextView
+        android:id="@+id/email_id"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="TextView"
+        app:layout_constraintEnd_toEndOf="@+id/youLogIn"
+        app:layout_constraintStart_toStartOf="@+id/youLogIn"
+        app:layout_constraintTop_toBottomOf="@+id/youLogIn" />
+
+    <TextView
+        android:id="@+id/youLogIn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/youLogIn"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/logOutBtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="Button"
+        app:layout_constraintEnd_toEndOf="@+id/password_id"
+        app:layout_constraintStart_toStartOf="@+id/password_id"
+        app:layout_constraintTop_toBottomOf="@+id/password_id" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

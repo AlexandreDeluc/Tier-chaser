@@ -1,9 +1,12 @@
 package fr.isen.deluc.tierchaser
 
+import android.app.Activity
 import android.content.Intent
+import android.graphics.Bitmap
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.provider.MediaStore
+import com.google.firebase.auth.FirebaseAuth
 import fr.isen.deluc.tierchaser.databinding.ActivityHomeBinding
 
 class HomeActivity : AppCompatActivity() {
@@ -13,6 +16,18 @@ class HomeActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityHomeBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+        val userId = intent.getStringExtra("user_id")
+        val emailId = intent.getStringExtra("email_id")
+
+        binding.emailId.text = "User ID :: $userId"
+        binding.passwordId.text = "Email ID :: $emailId"
+
+        binding.logOutBtn.setOnClickListener {
+            FirebaseAuth.getInstance().signOut()
+            startActivity(Intent(this@HomeActivity, UserActivity::class.java))
+            finish()
+        }
 
         binding.bottomNavigation.setOnNavigationItemSelectedListener { item ->
             when (item.itemId) {
@@ -24,9 +39,6 @@ class HomeActivity : AppCompatActivity() {
                 else -> false
             }
         }
-
-
-
-
     }
+
 }
