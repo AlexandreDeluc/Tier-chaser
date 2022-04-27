@@ -18,14 +18,12 @@ class HomeActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         val userId = intent.getStringExtra("user_id")
-        val emailId = intent.getStringExtra("email_id")
 
-        binding.emailId.text = "User ID :: $userId"
-        binding.passwordId.text = "Email ID :: $emailId"
+        binding.emailId.text = "$userId"
 
         binding.logOutBtn.setOnClickListener {
             FirebaseAuth.getInstance().signOut()
-            startActivity(Intent(this@HomeActivity, UserActivity::class.java))
+            startActivity(Intent(this@HomeActivity, LoginActivity::class.java))
             finish()
         }
 

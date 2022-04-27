@@ -20,7 +20,7 @@ class LoadingActivity : AppCompatActivity() {
         )
         Handler().postDelayed(
             {
-                val intent = Intent(this, UserActivity::class.java)
+                val intent = Intent(this, LoginActivity::class.java)
                 startActivity(intent)
                 finish()
             },
