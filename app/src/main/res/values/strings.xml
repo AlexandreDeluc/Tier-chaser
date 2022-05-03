@@ -22,6 +22,7 @@
 
     <string name="loginTitle">Login</string>
     <string name="noAccountBtn">Don\'t have an account ?</string>
+    <string name="forgotPassword">Forgot your password ?</string>
 
     // Verification
 

@@ -8,7 +8,10 @@ import android.widget.Toast
 import androidx.core.content.ContextCompat.startActivity
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
+import com.google.firebase.auth.ktx.auth
+import com.google.firebase.ktx.Firebase
 import fr.isen.deluc.tierchaser.databinding.ActivityLoginBinding
+import kotlinx.android.synthetic.main.activity_login.*
 
 class LoginActivity : AppCompatActivity() {
     private lateinit var binding: ActivityLoginBinding
@@ -33,9 +36,9 @@ class LoginActivity : AppCompatActivity() {
                     val email: String = binding.email.text.toString().trim() { it <= ' ' }
                     val password: String = binding.password.text.toString().trim() { it <= ' ' }
 
-                    FirebaseAuth.getInstance().signInWithEmailAndPassword(email, password)
-                        .addOnCompleteListener { task ->
-                            if (task.isSuccessful) {
+                        FirebaseAuth.getInstance().signInWithEmailAndPassword(email, password)
+                            .addOnCompleteListener { task ->
+                                if (task.isSuccessful) {
                                     Toast.makeText(
                                         this,
                                         "You are login successfully",
@@ -52,14 +55,17 @@ class LoginActivity : AppCompatActivity() {
                                     intent.putExtra("email_id", email)
                                     startActivity(intent)
                                     finish()
-                            } else {
-                                Toast.makeText(
-                                    this,
-                                    task.exception!!.message.toString(),
-                                    Toast.LENGTH_LONG
-                                ).show()
+                                } else {
+                                    Toast.makeText(
+                                        this,
+                                        task.exception!!.message.toString(),
+                                        Toast.LENGTH_LONG
+                                    ).show()
+                                }
                             }
-                        }
+
+
+
                 }
             }
         }
@@ -67,6 +73,16 @@ class LoginActivity : AppCompatActivity() {
         binding.noAccountBtn.setOnClickListener {
             val intent = Intent(this, RegisterActivity::class.java)
             startActivity(intent)
+        }
+
+        binding.forgotPassword.setOnClickListener {
+            val emailAddress = "alexandre.deluc08@gmail.com"
+            Firebase.auth.sendPasswordResetEmail(emailAddress)
+                .addOnCompleteListener { task ->
+                    if(task.isSuccessful){
+                        Toast.makeText(this, "Email sent", Toast.LENGTH_LONG).show()
+                    }
+                }
         }
     }
 }
