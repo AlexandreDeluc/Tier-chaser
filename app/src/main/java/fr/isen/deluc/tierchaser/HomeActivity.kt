@@ -4,6 +4,7 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.provider.MediaStore
+import android.widget.Toast
 import fr.isen.deluc.tierchaser.databinding.ActivityHomeBinding
 
 class HomeActivity : AppCompatActivity() {

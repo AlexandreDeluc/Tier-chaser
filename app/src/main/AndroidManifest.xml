@@ -11,6 +11,10 @@
         android:theme="@style/Theme.TierChaser">
 
         <activity
+            android:name=".ProductListActivity">
+        </activity>
+
+        <activity
             android:name=".HomeActivity"
             android:exported="true">
             <intent-filter>
