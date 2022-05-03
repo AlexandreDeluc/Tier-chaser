@@ -8,4 +8,11 @@
         android:icon="@drawable/logout"
         app:showAsAction="always"
         />
+    <item
+        android:id="@+id/deleteUser"
+        android:title="@string/deleteUser"
+        android:icon="@drawable/account"
+        app:showAsAction="always"
+        />
+
 </menu>

@@ -1,9 +1,13 @@
 package fr.isen.deluc.tierchaser
 
+import android.app.AlertDialog
+import android.content.DialogInterface
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.text.InputType
 import android.text.TextUtils
+import android.widget.EditText
 import android.widget.Toast
 import androidx.core.content.ContextCompat.startActivity
 import com.google.firebase.auth.FirebaseAuth
@@ -76,13 +80,30 @@ class LoginActivity : AppCompatActivity() {
         }
 
         binding.forgotPassword.setOnClickListener {
-            val emailAddress = "alexandre.deluc08@gmail.com"
-            Firebase.auth.sendPasswordResetEmail(emailAddress)
+            showDialog()
+        }
+    }
+    private fun showDialog() {
+        val builder: AlertDialog.Builder = android.app.AlertDialog.Builder(this)
+        builder.setTitle("Reset your password")
+
+        val input = EditText(this)
+        input.setHint("Enter your mail address")
+        input.inputType = InputType.TYPE_CLASS_TEXT
+        builder.setView(input)
+
+        builder.setPositiveButton("OK", DialogInterface.OnClickListener { dialog, which ->
+            var emailInput = input.text.toString()
+            Firebase.auth.sendPasswordResetEmail(emailInput)
                 .addOnCompleteListener { task ->
                     if(task.isSuccessful){
                         Toast.makeText(this, "Email sent", Toast.LENGTH_LONG).show()
                     }
                 }
-        }
+
+        })
+        builder.setNegativeButton("Cancel", DialogInterface.OnClickListener { dialog, which -> dialog.cancel() })
+
+        builder.show()
     }
 }

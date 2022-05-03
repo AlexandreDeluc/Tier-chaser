@@ -27,9 +27,10 @@
     // Verification
 
     <string name="verificationTitle">Verify your mail</string>
-    <string name="verify">Verify your mail box</string>
+    <string name="verify">Send verification mail</string>
     <string name="backToLogin">Back to Login</string>
 
     // Home
     <string name="logoutBtn">Log Out</string>
+    <string name="deleteUser">Delete Account</string>
 </resources>

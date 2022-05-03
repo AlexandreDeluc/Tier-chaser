@@ -8,7 +8,10 @@ import android.os.Bundle
 import android.provider.MediaStore
 import android.view.Menu
 import android.view.MenuItem
+import android.widget.Toast
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.ktx.auth
+import com.google.firebase.ktx.Firebase
 import fr.isen.deluc.tierchaser.databinding.ActivityHomeBinding
 
 class HomeActivity : AppCompatActivity() {
@@ -39,11 +42,24 @@ class HomeActivity : AppCompatActivity() {
         return true
     }
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        val user = Firebase.auth.currentUser!!
         return when(item.itemId){
             R.id.logout -> {
                 FirebaseAuth.getInstance().signOut()
                 startActivity(Intent(this@HomeActivity, LoginActivity::class.java))
                 finish()
+                return true
+            }
+            R.id.deleteUser -> {
+                user.delete()
+                    .addOnCompleteListener { task ->
+                        if(task.isSuccessful){
+                            Toast.makeText(this, "Account deleted", Toast.LENGTH_LONG).show()
+                            val intent = Intent(this, RegisterActivity::class.java)
+                            startActivity(intent)
+                            finish()
+                        }
+                    }
                 return true
             }
             else -> super.onOptionsItemSelected(item)
