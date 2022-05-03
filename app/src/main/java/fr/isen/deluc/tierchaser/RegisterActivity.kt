@@ -1,26 +1,40 @@
 package fr.isen.deluc.tierchaser
 
+import android.app.ProgressDialog
+import android.content.ContentValues.TAG
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.text.TextUtils
+import android.util.Log
 import android.widget.Toast
+import androidx.appcompat.app.AlertDialog
 import com.google.android.gms.tasks.OnCompleteListener
 import com.google.firebase.auth.AuthResult
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
+import com.google.firebase.auth.ktx.actionCodeSettings
+import com.google.firebase.auth.ktx.auth
+import com.google.firebase.ktx.Firebase
 import fr.isen.deluc.tierchaser.databinding.ActivityRegisterBinding
+import kotlinx.android.synthetic.main.activity_login.*
 
 class RegisterActivity : AppCompatActivity() {
     private lateinit var binding: ActivityRegisterBinding
-    private lateinit var auth: FirebaseAuth;
+    private lateinit var progressDialog: ProgressDialog
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityRegisterBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        progressDialog = ProgressDialog(this)
+        progressDialog.setTitle("Please wait")
+        progressDialog.setCanceledOnTouchOutside(false)
+
+
         binding.validateBtn.setOnClickListener {
+
             when {
                 TextUtils.isEmpty(binding.email.text.toString().trim { it <= ' ' }) -> {
                     Toast.makeText(this, "Please enter an email", Toast.LENGTH_LONG).show()
@@ -30,7 +44,7 @@ class RegisterActivity : AppCompatActivity() {
                 }
 
                 else -> {
-                    val email: String = binding.email.text.toString().trim() { it <= ' ' }
+                    val email: String = binding.email.text.toString().trim() { it <= ' '}
                     val password: String = binding.password.text.toString().trim() { it <= ' ' }
                     val userName: String = binding.userName.text.toString().trim() { it <= ' '}
 
@@ -38,15 +52,11 @@ class RegisterActivity : AppCompatActivity() {
                         .addOnCompleteListener(
                             OnCompleteListener<AuthResult> { task ->
                                 if (task.isSuccessful) {
-                                    val firebaseUser: FirebaseUser = task.result!!.user!!
+                                    val user: FirebaseUser = task.result!!.user!!
 
-                                    Toast.makeText(
-                                        this,
-                                        "You are registered successfully",
-                                        Toast.LENGTH_LONG
-                                    ).show()
+                                    //Toast.makeText(this, "You are registered successfully", Toast.LENGTH_LONG).show()
 
-                                    val intent = Intent(this, HomeActivity::class.java)
+                                    val intent = Intent(this, VerifyActivity::class.java)
                                     intent.flags =
                                         Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
                                     intent.putExtra("user_id", userName)
@@ -64,6 +74,7 @@ class RegisterActivity : AppCompatActivity() {
                         )
                 }
             }
+
         }
         binding.alreadyBtn.setOnClickListener {
             val intent =  Intent(this, LoginActivity::class.java)

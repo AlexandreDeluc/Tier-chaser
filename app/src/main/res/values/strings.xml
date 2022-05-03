@@ -23,6 +23,12 @@
     <string name="loginTitle">Login</string>
     <string name="noAccountBtn">Don\'t have an account ?</string>
 
+    // Verification
+
+    <string name="verificationTitle">Verify your mail</string>
+    <string name="verify">Verify your mail box</string>
+    <string name="backToLogin">Back to Login</string>
+
     // Home
     <string name="logoutBtn">Log Out</string>
 </resources>
