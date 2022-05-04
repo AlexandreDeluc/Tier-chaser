@@ -19,7 +19,6 @@ import kotlinx.android.synthetic.main.activity_login.*
 
 class LoginActivity : AppCompatActivity() {
     private lateinit var binding: ActivityLoginBinding
-    private lateinit var user: FirebaseUser
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -37,39 +36,7 @@ class LoginActivity : AppCompatActivity() {
                 }
 
                 else -> {
-                    val email: String = binding.email.text.toString().trim() { it <= ' ' }
-                    val password: String = binding.password.text.toString().trim() { it <= ' ' }
-
-                        FirebaseAuth.getInstance().signInWithEmailAndPassword(email, password)
-                            .addOnCompleteListener { task ->
-                                if (task.isSuccessful) {
-                                    Toast.makeText(
-                                        this,
-                                        "You are login successfully",
-                                        Toast.LENGTH_LONG
-                                    ).show()
-
-                                    val intent = Intent(this, HomeActivity::class.java)
-                                    intent.flags =
-                                        Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
-                                    intent.putExtra(
-                                        "user_id",
-                                        FirebaseAuth.getInstance().currentUser!!.uid
-                                    )
-                                    intent.putExtra("email_id", email)
-                                    startActivity(intent)
-                                    finish()
-                                } else {
-                                    Toast.makeText(
-                                        this,
-                                        task.exception!!.message.toString(),
-                                        Toast.LENGTH_LONG
-                                    ).show()
-                                }
-                            }
-
-
-
+                    signIn()
                 }
             }
         }
@@ -83,6 +50,7 @@ class LoginActivity : AppCompatActivity() {
             showDialog()
         }
     }
+
     private fun showDialog() {
         val builder: AlertDialog.Builder = android.app.AlertDialog.Builder(this)
         builder.setTitle("Reset your password")
@@ -105,5 +73,43 @@ class LoginActivity : AppCompatActivity() {
         builder.setNegativeButton("Cancel", DialogInterface.OnClickListener { dialog, which -> dialog.cancel() })
 
         builder.show()
+    }
+    private fun signIn() {
+        val email: String = binding.email.text.toString().trim() { it <= ' ' }
+        val password: String = binding.password.text.toString().trim() { it <= ' ' }
+        val firebaseUser: FirebaseUser? = FirebaseAuth.getInstance().currentUser
+        val vEmail = firebaseUser?.isEmailVerified
+
+        FirebaseAuth.getInstance().signInWithEmailAndPassword(email, password)
+            .addOnCompleteListener { task ->
+                if (task.isSuccessful) {
+
+                    val intent = Intent(this, HomeActivity::class.java)
+                    intent.flags =
+                        Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+                    intent.putExtra(
+                        "user_id",
+                        FirebaseAuth.getInstance().currentUser!!.uid
+                    )
+                    intent.putExtra("email_id", email)
+                    if(vEmail!!){
+                        Toast.makeText(this, "Account is verified, you are logged in", Toast.LENGTH_LONG).show()
+                        startActivity(intent)
+                        finish()
+                    }
+                    else{
+                        Toast.makeText(this, "Account is not verified", Toast.LENGTH_LONG).show()
+                    }
+                } else {
+                    Toast.makeText(
+                        this,
+                        task.exception!!.message.toString(),
+                        Toast.LENGTH_LONG
+                    ).show()
+                }
+            }
+
+
+
     }
 }
