@@ -5,4 +5,8 @@
     <string name="title_activity_maps">MapsActivity</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="aucune_photo_ajout_e">Aucune photo ajoutée</string>
+    <string name="prendre_une_image">Prendre une image</string>
+    <string name="importer_une_image">Importer une image</string>
+    <string name="preview">preview</string>
 </resources>

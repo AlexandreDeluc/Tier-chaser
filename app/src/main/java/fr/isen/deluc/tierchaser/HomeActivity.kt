@@ -16,9 +16,13 @@ class HomeActivity : AppCompatActivity() {
         binding.bottomNavigation.setOnNavigationItemSelectedListener { item ->
             when (item.itemId) {
                 R.id.photoBtn -> {
-                    val intent = Intent(MediaStore.ACTION_IMAGE_CAPTURE)
-                    startActivityForResult(intent, 10)
+                    //val intent = Intent(MediaStore.ACTION_IMAGE_CAPTURE)
+                    //startActivityForResult(intent, 10)
+                    //true
+                    val intent = Intent(this, PublishActivity::class.java)
+                    startActivity(intent)
                     true
+
                 }
                 R.id.localisationBtn -> {
 
