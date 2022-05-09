@@ -9,7 +9,6 @@ import com.google.android.gms.maps.OnMapReadyCallback
 import com.google.android.gms.maps.SupportMapFragment
 import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.MarkerOptions
-import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.ktx.database
 import com.google.firebase.ktx.Firebase
 
@@ -47,19 +46,22 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
 
                 for (ds in it.children) {
 
-                Toast.makeText(this,"La base de données a été lu", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this,"La base de donnees a été lue", Toast.LENGTH_SHORT).show()
 
                     if (it.exists()) {
 
                             val latitude = ds.child("latitude").getValue(Double::class.java) as Double
                             val longitude = ds.child("longitude").getValue(Double::class.java) as Double
                             val name = ds.child("name").getValue(String::class.java)
+                            //val marker = ds.child("imageUrl").getValue(DataSnapshot::class.java) as Int
 
                             val cities = LatLng(latitude, longitude)
                             val zoomLevel = 15f // f : float number
 
                             map.addMarker(MarkerOptions().position(cities).title(name))
                             map.moveCamera(CameraUpdateFactory.newLatLngZoom(cities, zoomLevel))
+
+                        //.icon(BitmapDescriptorFactory.fromResource(marker))
 
                     }
                 }
