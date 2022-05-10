@@ -1,12 +1,39 @@
 <resources>
-    <string name="app_name">TierChaser</string>
+    <string name="app_name">Tier Chaser</string>
     <string name="subtitle">The Guide of Antique Lovers</string>
     <string name="description">Find antique objects which are hard to find in a flea market using a simple picture</string>
     <string name="title_activity_maps">MapsActivity</string>
     <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
-    <string name="aucune_photo_ajout_e">Aucune photo ajoutée</string>
-    <string name="prendre_une_image">Prendre une image</string>
-    <string name="importer_une_image">Importer une image</string>
+
+
+
+    //ShowObjectActivity
+    <string name="page_object_title">A découvrir</string>
+    <string name="page_object_last_object_section">Les derniers objets</string>
+
+    //CollectionActivity
+    <string name="page_collection_title">Ma collection</string>
+
+    //PublishActivity
+    <string name="page_publish_title2">Ajout d\'un objet</string>
+    <string name="page_publish_no_photo">Aucune photo ajoutée</string>
+    <string name="page_publish_upload_button1">Importer une photo</string>
+    <string name="page_publish_upload_button2">Prendre une photo</string>
     <string name="preview">preview</string>
+    <string name="page_publish_object_name">Nom de l\'objet</string>
+    <string name="page_publish_object_description">Description de l\'objet</string>
+    <string name="page_publish_object_price">Prix de l\'objet</string>
+    <string name="page_publish_button">Publier</string>
+
+    //FenetrePopUp
+    <string name="pop_up_name_object">Nom de l\'objet</string>
+    <string name="pop_up_description_title">Description</string>
+    <string name="pop_up_description_subtitle">Petite description</string>
+    <string name="pop_up_price_title">Prix</string>
+    <string name="pop_up_price_subtitle">Petit prix</string>
+
+    //Objet customisé
+    <string name="item_name_object">@string/page_publish_object_name</string>
+    <string name="item_description_object">@string/page_publish_object_description</string>
+
 </resources>
