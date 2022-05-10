@@ -44,6 +44,7 @@ class LoginActivity : AppCompatActivity() {
         binding.noAccountBtn.setOnClickListener {
             val intent = Intent(this, RegisterActivity::class.java)
             startActivity(intent)
+            finish()
         }
 
         binding.forgotPassword.setOnClickListener {
@@ -64,52 +65,49 @@ class LoginActivity : AppCompatActivity() {
             var emailInput = input.text.toString()
             Firebase.auth.sendPasswordResetEmail(emailInput)
                 .addOnCompleteListener { task ->
-                    if(task.isSuccessful){
+                    if (task.isSuccessful) {
                         Toast.makeText(this, "Email sent", Toast.LENGTH_LONG).show()
                     }
                 }
 
         })
-        builder.setNegativeButton("Cancel", DialogInterface.OnClickListener { dialog, which -> dialog.cancel() })
+        builder.setNegativeButton(
+            "Cancel",
+            DialogInterface.OnClickListener { dialog, which -> dialog.cancel() })
 
         builder.show()
     }
+
     private fun signIn() {
         val email: String = binding.email.text.toString().trim() { it <= ' ' }
         val password: String = binding.password.text.toString().trim() { it <= ' ' }
-        val firebaseUser: FirebaseUser? = FirebaseAuth.getInstance().currentUser
-        val vEmail = firebaseUser?.isEmailVerified
 
         FirebaseAuth.getInstance().signInWithEmailAndPassword(email, password)
             .addOnCompleteListener { task ->
-                if (task.isSuccessful) {
 
-                    val intent = Intent(this, HomeActivity::class.java)
-                    intent.flags =
-                        Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
-                    intent.putExtra(
-                        "user_id",
-                        FirebaseAuth.getInstance().currentUser!!.uid
-                    )
-                    intent.putExtra("email_id", email)
-                    if(vEmail!!){
-                        Toast.makeText(this, "Account is verified, you are logged in", Toast.LENGTH_LONG).show()
-                        startActivity(intent)
-                        finish()
+                val firebaseUser: FirebaseUser? = FirebaseAuth.getInstance().currentUser
+
+                    if (task.isSuccessful) {
+
+                        if (firebaseUser?.isEmailVerified!!) {
+
+                            val intent = Intent(this, HomeActivity::class.java)
+                            intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+
+                            intent.putExtra("user_id", FirebaseAuth.getInstance().currentUser!!.uid)
+                            intent.putExtra("email_id", email)
+
+                            Toast.makeText(this, "Account is verified, you are logged in", Toast.LENGTH_LONG).show()
+                            finish()
+                            startActivity(intent)
+                        }
+                        else{
+                            Toast.makeText(this, "Account not verified", Toast.LENGTH_LONG).show()
+                        }
                     }
-                    else{
-                        Toast.makeText(this, "Account is not verified", Toast.LENGTH_LONG).show()
+                     else {
+                        Toast.makeText(this, task.exception!!.message.toString(), Toast.LENGTH_LONG).show()
                     }
-                } else {
-                    Toast.makeText(
-                        this,
-                        task.exception!!.message.toString(),
-                        Toast.LENGTH_LONG
-                    ).show()
                 }
             }
-
-
-
     }
-}
