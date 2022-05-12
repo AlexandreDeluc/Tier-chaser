@@ -2,11 +2,7 @@ package fr.isen.deluc.tierchaser
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-
-
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
-import android.os.Bundle
 import android.text.TextUtils
 import android.widget.Toast
 import com.google.android.gms.tasks.OnCompleteListener

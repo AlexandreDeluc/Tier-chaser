@@ -51,4 +51,14 @@
     <string name="validateBtn">Register</string>
     <string name="alreadyBtn">Already have an account ?</string>
 
+
+    //VerifyActivity
+    <string name="verificationTitle">Verify your mail</string>
+    <string name="verify">Send verification mail</string>
+    <string name="backToLogin">Back to Login</string>
+
+    //Logout
+    <string name="logoutBtn">Log Out</string>
+
+
 </resources>

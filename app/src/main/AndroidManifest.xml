@@ -13,10 +13,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.TierChaser">
         <activity
-            android:name=".RegisterActivity"
-            android:exported="false" />
-        <activity
-            android:name=".LoginActivity"
+            android:name=".TensorFlowTestActivity"
             android:exported="false" />
         <!--
              TODO: Before you run your application, you need a Google Maps API key.
@@ -46,6 +43,15 @@
             android:exported="false" />
         <activity
             android:name=".ShowObjectActivity"
+            android:exported="false" />
+        <activity
+            android:name=".VerifyActivity"
+            android:exported="false" />
+        <activity
+            android:name=".RegisterActivity"
+            android:exported="false" />
+        <activity
+            android:name=".LoginActivity"
             android:exported="false" />
         <activity
             android:name=".LoadingActivity"
