@@ -8,6 +8,7 @@ import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.RecyclerView
 import fr.isen.deluc.tierchaser.R
 import fr.isen.deluc.tierchaser.adapter.ObjectAdapter
+import fr.isen.deluc.tierchaser.adapter.ObjectItemDecoration
 
 class ShowObjectFragment : Fragment() {
 
@@ -22,6 +23,7 @@ class ShowObjectFragment : Fragment() {
 
         val verticalRecyclerView = view.findViewById<RecyclerView>(R.id.vertical_recycler_view)
         verticalRecyclerView.adapter = ObjectAdapter(R.layout.item_vertical_object)
+        verticalRecyclerView.addItemDecoration(ObjectItemDecoration())
 
         return view
     }
