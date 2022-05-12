@@ -10,7 +10,6 @@ import fr.isen.deluc.tierchaser.R
 class ObjectAdapter : RecyclerView.Adapter<ObjectAdapter.ViewHolder>() {
 
     //boite pour ranger tout les composants à controler
-
     class ViewHolder(view: View) : RecyclerView.ViewHolder(view){
         val objectImage = view.findViewById<ImageView>(R.id.image_item)
     }
@@ -22,9 +21,7 @@ class ObjectAdapter : RecyclerView.Adapter<ObjectAdapter.ViewHolder>() {
         return ViewHolder(view)
     }
 
-    override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        TODO("Not yet implemented")
-    }
+    override fun onBindViewHolder(holder: ViewHolder, position: Int) {}
 
     override fun getItemCount(): Int {
         return 5
