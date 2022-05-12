@@ -9,7 +9,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="200dp"
-        android:background="@color/blue_700">
+        android:background="@color/teal_700">
 
         <ImageView
             android:id="@+id/preview"
@@ -26,7 +26,7 @@
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:background="@color/blue_700"
+            android:background="@color/teal_700"
             android:gravity="center"
             android:text="@string/page_publish_no_photo"
             android:textColor="#000000" />
@@ -45,8 +45,7 @@
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="10dp"
             android:layout_weight="1"
-            android:background="@color/blue_700"
-            android:backgroundTint="@color/blue_700"
+            android:background="@color/teal_700"
             android:text="@string/page_publish_upload_button2"
             android:textColor="#000000" />
 
@@ -57,8 +56,7 @@
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="10dp"
             android:layout_weight="1"
-            android:background="@color/blue_700"
-            android:backgroundTint="@color/blue_700"
+            android:background="@color/teal_700"
             android:text="@string/page_publish_upload_button1"
             android:textColor="#000000" />
     </LinearLayout>

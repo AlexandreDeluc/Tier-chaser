@@ -44,7 +44,7 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
     }
 
     private fun goToAnotherActivity() {
-        val intent = Intent(this, PublishActivity::class.java)
+        val intent = Intent(this, ShowObjectActivity::class.java)
         startActivity(intent)
     }
 
