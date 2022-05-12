@@ -42,4 +42,13 @@
     <string name="noAccountBtn">Don\'t have an account ?</string>
     <string name="forgotPassword">Forgot your password ?</string>
 
+
+    //RegisterActivity
+    <string name="createAccount">Create an Account</string>
+    <string name="username">Username</string>
+    <string name="email">Email</string>
+    <string name="password">Password</string>
+    <string name="validateBtn">Register</string>
+    <string name="alreadyBtn">Already have an account ?</string>
+
 </resources>
