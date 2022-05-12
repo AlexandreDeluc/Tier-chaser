@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.RecyclerView
 import fr.isen.deluc.tierchaser.ObjectModel
+import fr.isen.deluc.tierchaser.ObjectRepository.Singleton.objectList
 import fr.isen.deluc.tierchaser.R
 import fr.isen.deluc.tierchaser.ShowObjectActivity
 import fr.isen.deluc.tierchaser.adapter.ObjectAdapter
@@ -19,8 +20,7 @@ class ShowObjectFragment(
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val view = inflater?.inflate(R.layout.fragment_show_object, container, false)
 
-        //créer une liste qui stocke les objets
-        val objectList = arrayListOf<ObjectModel>()
+
 
         //recuperer le recycler view
         val horizontalRecyclerView = view.findViewById<RecyclerView>(R.id.horizontal_recycler_view)

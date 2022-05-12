@@ -9,10 +9,16 @@ class ShowObjectActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_show_object)
 
-        //on injecte le fragment dans notre fragment_container
-        val transaction = supportFragmentManager.beginTransaction()
-        transaction.replace(R.id.fragment_container, ShowObjectFragment(this))
-        transaction.addToBackStack(null)
-        transaction.commit()
+        //on charge notre ObjectRepository
+        val repo = ObjectRepository()
+
+        //mettre à jour la liste d'objets
+        repo.updateData{
+            //on injecte le fragment dans notre fragment_container
+            val transaction = supportFragmentManager.beginTransaction()
+            transaction.replace(R.id.fragment_container, ShowObjectFragment(this))
+            transaction.addToBackStack(null)
+            transaction.commit()
+        }
     }
 }

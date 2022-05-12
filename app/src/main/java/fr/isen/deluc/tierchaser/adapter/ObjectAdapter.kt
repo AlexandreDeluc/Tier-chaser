@@ -9,6 +9,7 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import fr.isen.deluc.tierchaser.ObjectModel
+import fr.isen.deluc.tierchaser.ObjectRepository
 import fr.isen.deluc.tierchaser.R
 import fr.isen.deluc.tierchaser.ShowObjectActivity
 
@@ -37,6 +38,9 @@ class ObjectAdapter(
         //recuperer les infos de l'objet
         val currentObject = objectList[position]
 
+        //recuperer le repository
+        val repo = ObjectRepository()
+
         //utiliser glide pour récuperer l'image à partir de son lien -> composant
         Glide.with(context).load(Uri.parse(currentObject.imageUrl)).into(holder.objectImage)
 
@@ -53,9 +57,19 @@ class ObjectAdapter(
         else{
             holder.starIcon.setImageResource(R.drawable.ic_unlike)
         }
+
+        //rajouter une interaction sur l'étoile
+        holder.starIcon.setOnClickListener {
+            //inverse si le bouton est like ou non
+            currentObject.liked = !currentObject.liked
+            //mettre à jour l'objet
+            repo.updateObject(currentObject)
+
+        }
     }
 
     override fun getItemCount(): Int {
         return objectList.size
     }
+
 }
