@@ -15,5 +15,10 @@
         android:id="@+id/localizeBtn"
         android:icon="@drawable/localiser"
         android:title="Carte"></item>
+    <item
+        android:id="@+id/profilBtn"
+        android:icon="@drawable/account"
+        android:title="Carte"></item>
+
 
 </menu>

@@ -9,13 +9,12 @@ import android.text.InputType
 import android.text.TextUtils
 import android.widget.EditText
 import android.widget.Toast
-import androidx.core.content.ContextCompat.startActivity
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
 import fr.isen.deluc.tierchaser.databinding.ActivityLoginBinding
-import kotlinx.android.synthetic.main.activity_login.*
+
 
 class LoginActivity : AppCompatActivity() {
     private lateinit var binding: ActivityLoginBinding

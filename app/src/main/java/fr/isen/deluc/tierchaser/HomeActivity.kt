@@ -1,8 +1,6 @@
 package fr.isen.deluc.tierchaser
 
-import android.app.Activity
 import android.content.Intent
-import android.graphics.Bitmap
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.provider.MediaStore
@@ -22,15 +20,22 @@ class HomeActivity : AppCompatActivity() {
         binding = ActivityHomeBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        //val userId = intent.getStringExtra("user_id")
+        // Pour recupérer l'id du mec
 
-        //binding.emailId.text = "$userId"
+        //val userId = intent.getStringExtra("user_id")
+        //binding.name.text = "$userId"
 
         binding.bottomNavigation.setOnNavigationItemSelectedListener { item ->
             when (item.itemId) {
                 R.id.photoBtn -> {
                     val intent = Intent(MediaStore.ACTION_IMAGE_CAPTURE)
                     startActivityForResult(intent, 10)
+                    true
+                }
+                R.id.profilBtn -> {
+                    val intent = Intent(this, ProfilActivity::class.java)
+                    startActivity(intent)
+                    finish()
                     true
                 }
                 else -> false

@@ -33,4 +33,18 @@
     // Home
     <string name="logoutBtn">Log Out</string>
     <string name="deleteUser">Delete Account</string>
+
+    // Profil
+    <string name="nbPublication">Publication</string>
+    <string name="followers">Followers</string>
+    <string name="following">Following</string>
+    <string name="editProfil">Edit Profil</string>
+
+    // Edit Profil
+    <string name="editPhoto">Edit profil picture ?</string>
+    <string name="editUserName">Edit username ?</string>
+    <string name="editBio">Edit bio ?</string>
+    <string name="newUsername">Enter a new userName</string>
+    <string name="newBio">Enter a new bio</string>*
+    <string name="saveBtn">Save</string>
 </resources>
