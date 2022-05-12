@@ -52,11 +52,11 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
         val builder: AlertDialog.Builder = android.app.AlertDialog.Builder(this)
         builder.setTitle("Souhaitez-vous changer de page?")
 
-        builder.setPositiveButton("Post", DialogInterface.OnClickListener { dialog, which ->
+        builder.setPositiveButton("Objets en vente", DialogInterface.OnClickListener { dialog, which ->
             goToAnotherActivity()
         })
         builder.setNegativeButton(
-            "Carte",
+            "Retour carte",
             DialogInterface.OnClickListener { dialog, which -> dialog.cancel() })
         builder.show()
     }

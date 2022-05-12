@@ -11,7 +11,7 @@ class ShowObjectActivity : AppCompatActivity() {
 
         //on injecte le fragment dans notre fragment_container
         val transaction = supportFragmentManager.beginTransaction()
-        transaction.replace(R.id.fragment_container, ShowObjectFragment())
+        transaction.replace(R.id.fragment_container, ShowObjectFragment(this))
         transaction.addToBackStack(null)
         transaction.commit()
     }
