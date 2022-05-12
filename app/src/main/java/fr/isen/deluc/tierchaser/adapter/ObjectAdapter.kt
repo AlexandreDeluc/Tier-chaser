@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
+import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import fr.isen.deluc.tierchaser.ObjectModel
@@ -20,6 +21,9 @@ class ObjectAdapter(
     //boite pour ranger tout les composants à controler
     class ViewHolder(view: View) : RecyclerView.ViewHolder(view){
         val objectImage = view.findViewById<ImageView>(R.id.image_item)
+        val objectName:TextView? = view.findViewById(R.id.item_name)
+        val objectDescription:TextView? = view.findViewById(R.id.item_description)
+        val starIcon = view.findViewById<ImageView>(R.id.star_icon)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -36,7 +40,19 @@ class ObjectAdapter(
         //utiliser glide pour récuperer l'image à partir de son lien -> composant
         Glide.with(context).load(Uri.parse(currentObject.imageUrl)).into(holder.objectImage)
 
+        //mettre à jour le nom de l'objet
+        holder.objectName?.text = currentObject.name
 
+        //mettre à jour la description de l'objet
+        holder.objectDescription?.text = currentObject.description
+
+        //verifier le like
+        if(currentObject.liked){
+            holder.starIcon.setImageResource(R.drawable.ic_like)
+        }
+        else{
+            holder.starIcon.setImageResource(R.drawable.ic_unlike)
+        }
     }
 
     override fun getItemCount(): Int {

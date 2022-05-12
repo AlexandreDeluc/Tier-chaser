@@ -28,7 +28,7 @@ class ShowObjectFragment(
             "l'auteur est Patrick Bruel",
                 "https://cdn.pixabay.com/photo/2017/11/06/15/52/blank-vinyl-record-jacket-2924018_960_720.jpg",
             "50 euros",
-            false
+            true
         ))
 
         //enregistrer un second objet dans notre liste (vinyle)

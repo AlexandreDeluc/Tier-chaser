@@ -15,4 +15,12 @@
         android:scaleType="centerCrop"
         android:src="@drawable/hello" />
 
+    <ImageView
+        android:id="@+id/star_icon"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:layout_margin="@dimen/item_margin"
+        android:src="@drawable/ic_unlike"
+        app:tint="@color/teal_700"/>
+
 </androidx.cardview.widget.CardView>
