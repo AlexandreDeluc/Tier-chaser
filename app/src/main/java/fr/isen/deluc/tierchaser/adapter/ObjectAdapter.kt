@@ -7,7 +7,7 @@ import android.widget.ImageView
 import androidx.recyclerview.widget.RecyclerView
 import fr.isen.deluc.tierchaser.R
 
-class ObjectAdapter : RecyclerView.Adapter<ObjectAdapter.ViewHolder>() {
+class ObjectAdapter(private val layoutId: Int) : RecyclerView.Adapter<ObjectAdapter.ViewHolder>() {
 
     //boite pour ranger tout les composants à controler
     class ViewHolder(view: View) : RecyclerView.ViewHolder(view){
@@ -17,7 +17,7 @@ class ObjectAdapter : RecyclerView.Adapter<ObjectAdapter.ViewHolder>() {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val view = LayoutInflater
             .from(parent.context)
-            .inflate(R.layout.item_horizontal_object, parent, false)
+            .inflate(layoutId, parent, false)
         return ViewHolder(view)
     }
 
