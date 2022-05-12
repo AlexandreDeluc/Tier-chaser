@@ -3,7 +3,7 @@
     package="fr.isen.deluc.tierchaser">
 
     <uses-permission android:name="android.permission.INTERNET" />
-    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 
     <application
         android:allowBackup="true"
@@ -13,7 +13,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.TierChaser">
         <activity
-            android:name=".ShowObjectActivity"
+            android:name=".LoginActivity"
             android:exported="false" />
         <!--
              TODO: Before you run your application, you need a Google Maps API key.
@@ -40,6 +40,12 @@
             android:label="PublishActivity" />
         <activity
             android:name=".HomeActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ShowObjectActivity"
+            android:exported="false" />
+        <activity
+            android:name=".LoadingActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
