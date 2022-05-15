@@ -13,6 +13,15 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.TierChaser">
         <activity
+            android:name=".FilActuActivity"
+            android:exported="false" />
+        <activity
+            android:name=".EditProfilActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ProfilActivity"
+            android:exported="false" />
+        <activity
             android:name=".TensorFlowTestActivity"
             android:exported="false" />
         <!--

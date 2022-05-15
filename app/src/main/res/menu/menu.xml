@@ -3,17 +3,22 @@
 
     <item
         android:id="@+id/actuBtn"
-        android:icon="@drawable/localiser"
+        android:icon="@drawable/ic_fil_actu"
         android:title="Fil d'actualité"></item>
 
     <item
         android:id="@+id/photoBtn"
-        android:icon="@drawable/app_photo"
+        android:icon="@drawable/ic_photo"
         android:title="Appareil Photo"></item>
 
     <item
         android:id="@+id/localisationBtn"
-        android:icon="@drawable/compte"
-        android:title="Carte"></item>
+        android:icon="@drawable/ic_location"
+        android:title="Marchés"></item>
+
+    <item
+        android:id="@+id/profileBtn"
+        android:icon="@drawable/ic_profile"
+        android:title="Profil"></item>
 
 </menu>
