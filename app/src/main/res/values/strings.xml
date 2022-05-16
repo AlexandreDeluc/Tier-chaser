@@ -76,4 +76,8 @@
     <string name="saveBtn">Save</string>
 
 
+    //FilActuActivity
+    <string name="pseudo_utilisateur">Pseudo utilisateur</string>
+
+
 </resources>

@@ -9,10 +9,13 @@ import com.google.android.gms.tasks.OnCompleteListener
 import com.google.firebase.auth.AuthResult
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
+import com.google.firebase.database.DatabaseReference
+import com.google.firebase.database.FirebaseDatabase
 import fr.isen.deluc.tierchaser.databinding.ActivityRegisterBinding
 
 
 class RegisterActivity : AppCompatActivity() {
+    private  lateinit var database: DatabaseReference
     private lateinit var binding: ActivityRegisterBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -34,6 +37,15 @@ class RegisterActivity : AppCompatActivity() {
                     val email: String = binding.email.text.toString().trim() { it <= ' '}
                     val password: String = binding.password.text.toString().trim() { it <= ' ' }
                     val userName: String = binding.userName.text.toString().trim() { it <= ' '}
+
+                    database = FirebaseDatabase.getInstance().getReference("Profil")
+                    val user = User(userName, email, password)
+                    database.setValue(user).addOnSuccessListener {
+                        Toast.makeText(this, "Success", Toast.LENGTH_SHORT).show()
+                    }
+                        .addOnFailureListener {
+                            Toast.makeText(this, "Fail", Toast.LENGTH_SHORT).show()
+                        }
 
                     FirebaseAuth.getInstance().createUserWithEmailAndPassword(email, password)
                         .addOnCompleteListener(

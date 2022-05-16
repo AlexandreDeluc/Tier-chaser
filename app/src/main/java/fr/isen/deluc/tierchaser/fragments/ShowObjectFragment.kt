@@ -7,7 +7,6 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.RecyclerView
 import fr.isen.deluc.tierchaser.ObjectModel
-import fr.isen.deluc.tierchaser.ObjectRepository.Singleton.objectList
 import fr.isen.deluc.tierchaser.R
 import fr.isen.deluc.tierchaser.ShowObjectActivity
 import fr.isen.deluc.tierchaser.adapter.ObjectAdapter
@@ -19,6 +18,49 @@ class ShowObjectFragment(
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val view = inflater?.inflate(R.layout.fragment_show_object, container, false)
+
+        //créer une liste qui stocke les objets
+        val objectList = arrayListOf<ObjectModel>()
+
+        //enregistrer un premier objet dans notre liste (vinyle)
+        objectList.add(ObjectModel(
+            "vinyle",
+            "l'auteur est Patrick Bruel",
+                "xxxx",
+            "https://cdn.pixabay.com/photo/2017/11/06/15/52/blank-vinyl-record-jacket-2924018_960_720.jpg",
+            "50 euros",
+            true
+        ))
+
+        //enregistrer un second objet dans notre liste (vinyle)
+        objectList.add(ObjectModel(
+                "voiture",
+                "xxxxxxx",
+                "xxxx",
+            "https://cdn.pixabay.com/photo/2016/02/13/13/11/oldtimer-1197800_960_720.jpg",
+                "50 000 euros",
+                false
+        ))
+
+        //enregistrer un troisieme objet dans notre liste (vinyle)
+        objectList.add(ObjectModel(
+            "chaussures",
+            "xxxxxxx",
+            "xxxxxxx",
+            "https://cdn.pixabay.com/photo/2016/11/19/18/06/feet-1840619_960_720.jpg",
+            "120 euros",
+            false
+        ))
+
+        //enregistrer un quatrieme objet dans notre liste (vinyle)
+        objectList.add(ObjectModel(
+            "téléphone",
+            "xxxxxxx",
+            "xxxxxxxxxxxxx",
+            "https://cdn.pixabay.com/photo/2014/08/05/10/30/iphone-410324_960_720.jpg",
+            "500 euros",
+            false
+        ))
 
 
 

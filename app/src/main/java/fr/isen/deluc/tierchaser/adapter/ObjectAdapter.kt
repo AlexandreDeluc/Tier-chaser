@@ -8,10 +8,7 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
-import fr.isen.deluc.tierchaser.ObjectModel
-import fr.isen.deluc.tierchaser.ObjectRepository
-import fr.isen.deluc.tierchaser.R
-import fr.isen.deluc.tierchaser.ShowObjectActivity
+import fr.isen.deluc.tierchaser.*
 
 class ObjectAdapter(
     private val context: ShowObjectActivity,
@@ -24,6 +21,7 @@ class ObjectAdapter(
         val objectImage = view.findViewById<ImageView>(R.id.image_item)
         val objectName:TextView? = view.findViewById(R.id.item_name)
         val objectDescription:TextView? = view.findViewById(R.id.item_description)
+        val pseudo_utilisateur:TextView? = view.findViewById<TextView>(R.id.pseudo_utilisateur)
         val starIcon = view.findViewById<ImageView>(R.id.star_icon)
     }
 

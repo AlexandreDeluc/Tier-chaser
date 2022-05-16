@@ -3,13 +3,9 @@ package fr.isen.deluc.tierchaser
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.provider.MediaStore
 import android.view.Menu
 import android.view.MenuItem
-import android.widget.Toast
 import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.auth.ktx.auth
-import com.google.firebase.ktx.Firebase
 import fr.isen.deluc.tierchaser.databinding.ActivityHomeBinding
 
 class HomeActivity : AppCompatActivity() {
@@ -40,6 +36,13 @@ class HomeActivity : AppCompatActivity() {
                 R.id.profileBtn -> {
 
                     val intent = Intent(this, ProfilActivity::class.java)
+                    startActivity(intent)
+                    true
+                }
+
+                R.id.actuBtn -> {
+
+                    val intent = Intent(this, FilActuActivity::class.java)
                     startActivity(intent)
                     true
                 }
