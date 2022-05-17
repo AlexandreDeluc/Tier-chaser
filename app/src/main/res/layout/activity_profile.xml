@@ -13,7 +13,7 @@
         android:layout_width="80dp"
         android:layout_height="80dp"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="@dimen/default_margin"
         android:src="@drawable/ic_profile"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -24,6 +24,7 @@
         android:layout_height="wrap_content"
         android:text="0"
         android:textStyle="bold"
+
         app:layout_constraintEnd_toEndOf="@+id/publication"
         app:layout_constraintStart_toStartOf="@+id/publication"
         app:layout_constraintTop_toTopOf="@+id/nbFollowers" />
@@ -88,14 +89,15 @@
 
     <Button
         android:id="@+id/editBtn"
-        android:layout_width="0dp"
-        android:layout_height="48dp"
-        android:layout_marginTop="1dp"
-        android:layout_marginEnd="8dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/default_margin"
+        android:layout_marginTop="@dimen/default_margin"
+        android:layout_marginRight="@dimen/default_margin"
         android:text="@string/editProfil"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="@+id/bio"
-        app:layout_constraintTop_toBottomOf="@+id/bio" />
+        app:layout_constraintTop_toBottomOf="@+id/letftPicture" />
 
     <TextView
         android:id="@+id/bio"
@@ -103,5 +105,12 @@
         android:layout_height="wrap_content"
         app:layout_constraintStart_toStartOf="@+id/name"
         app:layout_constraintTop_toBottomOf="@+id/name" />
+
+    <FrameLayout
+        android:id="@+id/fragment_container3"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="180dp"/>
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

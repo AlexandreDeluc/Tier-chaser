@@ -12,21 +12,18 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.TierChaser">
+        <activity
+            android:name=".ProfileActivity"
+            android:exported="false" />
 
         <meta-data
             android:name="com.google.android.geo.API_KEY"
             android:value="AIzaSyDQLMMiSIxyPoU35ygCq2Pf-DP673Qb-lw" />
 
-        <activity
-            android:name=".EditProfilActivity"
-            android:exported="false" />
-        <activity
-            android:name=".ProfilActivity"
-            android:exported="false" />
+
         <activity
             android:name=".TensorFlowTestActivity"
             android:exported="false" />
-
         <activity
             android:name=".MapsActivity"
             android:exported="false"
@@ -38,11 +35,9 @@
         <activity
             android:name=".HomeActivity"
             android:exported="false" />
-
         <activity
             android:name=".FilActuActivity"
             android:exported="false" />
-
         <activity
             android:name=".ShowObjectActivity"
             android:exported="false" />
@@ -58,14 +53,12 @@
         <activity
             android:name=".LoadingActivity"
             android:exported="true">
-
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
     </application>
 
 </manifest>

@@ -35,7 +35,7 @@ class HomeActivity : AppCompatActivity() {
 
                 R.id.profileBtn -> {
 
-                    val intent = Intent(this, ProfilActivity::class.java)
+                    val intent = Intent(this, ProfileActivity::class.java)
                     startActivity(intent)
                     true
                 }
