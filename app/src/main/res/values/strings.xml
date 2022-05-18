@@ -78,6 +78,7 @@
 
     //FilActuActivity
     <string name="pseudo_utilisateur">Pseudo utilisateur</string>
+    <string name="favoris">Vos favoris</string>
 
 
 </resources>

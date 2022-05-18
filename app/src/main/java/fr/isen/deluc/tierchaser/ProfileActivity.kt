@@ -9,9 +9,14 @@ class ProfileActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_profile)
 
-        val transaction = supportFragmentManager.beginTransaction()
-        transaction.replace(R.id.fragment_container3, ProfileFragment())
-        transaction.addToBackStack(null)
-        transaction.commit()
+        val repo = ProfileRepository()
+
+        repo.updateData {
+            val transaction = supportFragmentManager.beginTransaction()
+            transaction.replace(R.id.fragment_container3, ProfileFragment(this))
+            transaction.addToBackStack(null)
+            transaction.commit()
+        }
+
     }
 }

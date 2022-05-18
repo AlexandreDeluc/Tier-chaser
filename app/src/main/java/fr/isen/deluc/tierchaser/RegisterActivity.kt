@@ -17,6 +17,7 @@ import fr.isen.deluc.tierchaser.databinding.ActivityRegisterBinding
 class RegisterActivity : AppCompatActivity() {
     private  lateinit var database: DatabaseReference
     private lateinit var binding: ActivityRegisterBinding
+    private lateinit var auth: FirebaseAuth
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -34,34 +35,43 @@ class RegisterActivity : AppCompatActivity() {
                 }
 
                 else -> {
-                    val email: String = binding.email.text.toString().trim() { it <= ' '}
+                    val email: String = binding.email.text.toString().trim() { it <= ' ' }
                     val password: String = binding.password.text.toString().trim() { it <= ' ' }
-                    val userName: String = binding.userName.text.toString().trim() { it <= ' '}
+                    val userName: String = binding.userName.text.toString().trim() { it <= ' ' }
+
+                    auth = FirebaseAuth.getInstance()
+                    val userID = auth.currentUser?.uid
 
                     database = FirebaseDatabase.getInstance().getReference("Profil")
-                    val user = User(userName, email, password)
-                    database.setValue(user).addOnSuccessListener {
-                        Toast.makeText(this, "Success", Toast.LENGTH_SHORT).show()
-                    }
-                        .addOnFailureListener {
-                            Toast.makeText(this, "Fail", Toast.LENGTH_SHORT).show()
+                    val user = User(userID, userName, email, password)
+                    if(userID != null){
+                        database.child(userID).setValue(user).addOnSuccessListener {
                         }
+                            .addOnFailureListener {
+                                Toast.makeText(this, "Fail", Toast.LENGTH_SHORT).show()
+                            }
+                    }
+
+
 
                     FirebaseAuth.getInstance().createUserWithEmailAndPassword(email, password)
                         .addOnCompleteListener(
                             OnCompleteListener<AuthResult> { task ->
                                 if (task.isSuccessful) {
                                     val user: FirebaseUser = task.result!!.user!!
-
-                                    //Toast.makeText(this, "You are registered successfully", Toast.LENGTH_LONG).show()
-
                                     val intent = Intent(this, VerifyActivity::class.java)
                                     intent.flags =
                                         Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
                                     intent.putExtra("user_id", userName)
                                     intent.putExtra("email_id", email)
                                     startActivity(intent)
+                                    Toast.makeText(
+                                        this,
+                                        "You are registered successfully",
+                                        Toast.LENGTH_LONG
+                                    ).show()
                                     finish()
+
                                 } else {
                                     Toast.makeText(
                                         this,
@@ -73,7 +83,6 @@ class RegisterActivity : AppCompatActivity() {
                         )
                 }
             }
-
         }
         binding.alreadyBtn.setOnClickListener {
             val intent =  Intent(this, LoginActivity::class.java)
