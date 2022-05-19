@@ -21,7 +21,6 @@ class ObjectAdapter(
         val objectImage = view.findViewById<ImageView>(R.id.image_item)
         val objectName:TextView? = view.findViewById(R.id.item_name)
         val objectDescription:TextView? = view.findViewById(R.id.item_description)
-        val pseudo_utilisateur:TextView? = view.findViewById<TextView>(R.id.pseudo_utilisateur)
         val starIcon = view.findViewById<ImageView>(R.id.star_icon)
     }
 

@@ -13,13 +13,17 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.TierChaser">
         <activity
+            android:name=".EditProfilActivity"
+            android:exported="false"
+            android:label="@string/title_activity_edit_profil"
+            android:theme="@style/Theme.TierChaser.NoActionBar" />
+        <activity
             android:name=".ProfileActivity"
             android:exported="false" />
 
         <meta-data
             android:name="com.google.android.geo.API_KEY"
-            android:value="AIzaSyDQLMMiSIxyPoU35ygCq2Pf-DP673Qb-lw" />
-
+            android:value="AIzaSyCrNirdNy7y-5GF8cOqVDRXWwEFRh8fmPQ" />
 
         <activity
             android:name=".TensorFlowTestActivity"

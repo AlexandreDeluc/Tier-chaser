@@ -17,7 +17,6 @@ class ObjectRepository {
         //créer une liste qui va contenir nos objets
         val objectList = arrayListOf<ObjectModel>()
 
-
     }
 
     fun updateData(callback: () -> Unit){
@@ -33,16 +32,15 @@ class ObjectRepository {
                     val objet = ds.getValue(ObjectModel::class.java)
 
                     //vérifier que la plante n'est pas null
-                    if((objet != null)){
-                        objectList.add(objet)
+                    if(objet != null){
+                            objectList.add(objet)
 
                     }
                 }
                 //actionner le callback
                 callback()
             }
-            override fun onCancelled(error: DatabaseError) {
-            }
+            override fun onCancelled(error: DatabaseError) {}
 
         })
     }

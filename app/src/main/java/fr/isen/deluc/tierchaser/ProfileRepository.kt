@@ -32,7 +32,6 @@ class ProfileRepository {
                 for (ds in snapshot.children) {
                     //construire un objet
                     val objet = ds.getValue(ObjectModel::class.java)
-                    val liked = ds.child("liked").getValue(ObjectModel::class.java) as Boolean
 
                     //vérifier que l'item n'est pas null
                     if (objet != null) {

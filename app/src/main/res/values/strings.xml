@@ -37,48 +37,65 @@
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
 
-    //LoginActivity
-    <string name="loginTitle">Login</string>
-    <string name="noAccountBtn">Don\'t have an account ?</string>
-    <string name="forgotPassword">Forgot your password ?</string>
 
+    // Authentification
 
-    //RegisterActivity
-    <string name="createAccount">Create an Account</string>
-    <string name="username">Username</string>
+    <string name="validForm">The form is valid</string>
+    <string name="invalidForm">The form is invalid</string>
+    <string name="youLogIn">You sign in successfully !</string>
+
+    // Register
+
+    <string name="createAccount">Créer un compte</string>
+    <string name="username">Nom d\'utilisateur</string>
     <string name="email">Email</string>
-    <string name="password">Password</string>
-    <string name="validateBtn">Register</string>
-    <string name="alreadyBtn">Already have an account ?</string>
+    <string name="password">Mot de Passe</string>
+    <string name="validateBtn">Valider</string>
+    <string name="alreadyBtn">J\'ai déjà un compte</string>
 
+    // Login
 
-    //VerifyActivity
-    <string name="verificationTitle">Verify your mail</string>
-    <string name="verify">Send verification mail</string>
-    <string name="backToLogin">Back to Login</string>
+    <string name="loginTitle">Se Connecter</string>
+    <string name="noAccountBtn">J\'ai déjà un compte</string>
+    <string name="forgotPassword">Mot de passe oublié ?</string>
 
-    //LogoutActivity
-    <string name="logoutBtn">Log Out</string>
+    // Verification
 
-    //ProfilActivity
+    <string name="verificationTitle">Vérifier votre compte</string>
+    <string name="verify">Envoyer l\'email de vérification</string>
+    <string name="backToLogin">Se connecter</string>
+
+    // Home
+    <string name="logoutBtn">Se déconnecter</string>
+    <string name="deleteUser">Supprimer le compte</string>
+
+    // Profil
     <string name="nbPublication">Publication</string>
-    <string name="followers">Followers</string>
-    <string name="following">Following</string>
-    <string name="editProfil">Edit Profil</string>
+    <string name="followers">Abonés</string>
+    <string name="following">Abonements</string>
+    <string name="editProfil">Editer le profil</string>
 
-
-    //EditProfilActivity
-    <string name="editPhoto">Edit profil picture ?</string>
-    <string name="editUserName">Edit username ?</string>
-    <string name="editBio">Edit bio ?</string>
-    <string name="newUsername">Enter a new userName</string>
-    <string name="newBio">Enter a new bio</string>
-    <string name="saveBtn">Save</string>
+    // Edit Profil
+    <string name="editPhoto">Changer votre photo de profil ?</string>
+    <string name="editUserName">Changer de nom d\'utilisateur ?</string>
+    <string name="editBio">Changer de bio ?</string>
+    <string name="newUsername">Entrer un nouveau nom d\'utilisateur</string>
+    <string name="newBio">Entrer une nouvelle bio</string>
+    <string name="saveBtn">Enregistrer</string>
 
 
     //FilActuActivity
     <string name="pseudo_utilisateur">Pseudo utilisateur</string>
     <string name="favoris">Vos favoris</string>
+    <string name="title_activity_edit_profil">EditProfilActivity</string>
+    <!-- Strings used for fragments for navigation -->
+    <string name="first_fragment_label">First Fragment</string>
+    <string name="second_fragment_label">Second Fragment</string>
+    <string name="next">Next</string>
+    <string name="previous">Previous</string>
+
+    <string name="hello_first_fragment">Hello first fragment</string>
+    <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
 
 
 </resources>
