@@ -17,12 +17,12 @@ import org.tensorflow.lite.support.tensorbuffer.TensorBuffer
 
 class TensorFlowTestActivity : AppCompatActivity() {
 
-    lateinit var bitmap: Bitmap
-    lateinit var imgView: ImageView
+    private lateinit var bitmap: Bitmap
+    private lateinit var imgView: ImageView
     lateinit var binding: ActivityTensorFlowTestBinding
 
-    val Image_Capture_Code = 99
-    val OPERATION_CHOOSE_PHOTO = 98
+    private val Image_Capture_Code = 99
+    private val OPERATION_CHOOSE_PHOTO = 98
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -39,30 +39,30 @@ class TensorFlowTestActivity : AppCompatActivity() {
 
         val fileName = "labels.txt"
         val inputString = application.assets.open(fileName).bufferedReader().use { it.readText() }
-        var townList = inputString.split("\n")
-        var tv:TextView = findViewById(R.id.textView)
+        val townList = inputString.split("\n")
+        val tv:TextView = findViewById(R.id.textView)
 
         binding.importPhotoButton.setOnClickListener(View.OnClickListener {
-            var intent: Intent = Intent("android.intent.action.GET_CONTENT")
+            val intent: Intent = Intent("android.intent.action.GET_CONTENT")
             intent.type = "image/*"
             startActivityForResult(intent, OPERATION_CHOOSE_PHOTO)
         })
 
         binding.takePhotoButton.setOnClickListener(View.OnClickListener {
             //Start Camera
-            var cInt: Intent = Intent(MediaStore.ACTION_IMAGE_CAPTURE)
+            val cInt: Intent = Intent(MediaStore.ACTION_IMAGE_CAPTURE)
             startActivityForResult(cInt, Image_Capture_Code)
         })
 
         binding.predictButton.setOnClickListener(View.OnClickListener {
 
-            var resized: Bitmap = Bitmap.createScaledBitmap(bitmap, 224, 224, true)
+            val resized: Bitmap = Bitmap.createScaledBitmap(bitmap, 224, 224, true)
             val model = MobilenetV110224Quant.newInstance(this)
 
 // Creates inputs for reference.
             val inputFeature0 = TensorBuffer.createFixedSize(intArrayOf(1, 224, 224, 3), DataType.UINT8)
-            var tbuffer = TensorImage.fromBitmap(resized)
-            var byteBuffer = tbuffer.buffer
+            val tbuffer = TensorImage.fromBitmap(resized)
+            val byteBuffer = tbuffer.buffer
             inputFeature0.loadBuffer(byteBuffer)
 
 // Runs model inference and gets result.
