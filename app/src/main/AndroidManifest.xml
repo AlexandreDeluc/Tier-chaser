@@ -41,7 +41,11 @@
             android:theme="@style/Theme.TierChaser.NoActionBar" />
 
         <activity
-            android:name=".LoadingActivity"
+            android:name=".TensorFlowTestActivity"
+            android:exported="false" />
+
+        <activity
+            android:name=".LoginActivity"
             android:exported="false" />
 
         <activity
@@ -63,7 +67,7 @@
             android:name=".ProfileActivity"
             android:exported="false" />
         <activity
-            android:name=".TensorFlowTestActivity"
+            android:name=".LoadingActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

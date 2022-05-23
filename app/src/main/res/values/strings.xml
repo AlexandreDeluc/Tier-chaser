@@ -55,8 +55,9 @@
 
     // Login
 
-    <string name="loginTitle">Se Connecter</string>
-    <string name="noAccountBtn">J\'ai déjà un compte</string>
+    <string name="connect">Se connecter</string>
+    <string name="loginTitle">Veuillez-vous identifier</string>
+    <string name="noAccountBtn">Créer un compte</string>
     <string name="forgotPassword">Mot de passe oublié ?</string>
 
     // Verification
