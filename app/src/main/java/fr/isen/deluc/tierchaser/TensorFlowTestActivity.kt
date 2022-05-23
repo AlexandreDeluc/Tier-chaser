@@ -1,25 +1,40 @@
 package fr.isen.deluc.tierchaser
 
+import android.app.ProgressDialog
 import android.content.Intent
 import android.graphics.Bitmap
+import android.graphics.BitmapFactory
 import android.net.Uri
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.provider.MediaStore
 import android.view.View
 import android.widget.ImageView
 import android.widget.TextView
+import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
+import com.google.firebase.database.DatabaseReference
+import com.google.firebase.storage.FirebaseStorage
 import fr.isen.deluc.tierchaser.databinding.ActivityTensorFlowTestBinding
 import fr.isen.deluc.tierchaser.ml.MobilenetV110224Quant
 import org.tensorflow.lite.DataType
 import org.tensorflow.lite.support.image.TensorImage
 import org.tensorflow.lite.support.tensorbuffer.TensorBuffer
+import java.io.File
+import java.text.SimpleDateFormat
+import java.util.*
+
 
 class TensorFlowTestActivity : AppCompatActivity() {
 
+    lateinit var binding: ActivityTensorFlowTestBinding
+
     private lateinit var bitmap: Bitmap
     private lateinit var imgView: ImageView
-    lateinit var binding: ActivityTensorFlowTestBinding
+    lateinit var imageUri: Uri
+
+    private lateinit var fileName: TextView
+
+    lateinit var database: DatabaseReference
 
     private val Image_Capture_Code = 99
     private val OPERATION_CHOOSE_PHOTO = 98
@@ -33,6 +48,7 @@ class TensorFlowTestActivity : AppCompatActivity() {
 
         listenClick()
 
+
     }
 
     private fun listenClick(){
@@ -40,7 +56,7 @@ class TensorFlowTestActivity : AppCompatActivity() {
         val fileName = "labels.txt"
         val inputString = application.assets.open(fileName).bufferedReader().use { it.readText() }
         val townList = inputString.split("\n")
-        val tv:TextView = findViewById(R.id.textView)
+        val tv:TextView = findViewById(R.id.recognizedObject)
 
         binding.importPhotoButton.setOnClickListener(View.OnClickListener {
             val intent: Intent = Intent("android.intent.action.GET_CONTENT")
@@ -52,6 +68,7 @@ class TensorFlowTestActivity : AppCompatActivity() {
             //Start Camera
             val cInt: Intent = Intent(MediaStore.ACTION_IMAGE_CAPTURE)
             startActivityForResult(cInt, Image_Capture_Code)
+
         })
 
         binding.predictButton.setOnClickListener(View.OnClickListener {
@@ -75,6 +92,9 @@ class TensorFlowTestActivity : AppCompatActivity() {
 
 // Releases model resources if no longer used.
             model.close()
+
+            uploadImage()
+
         })
     }
 
@@ -88,17 +108,21 @@ class TensorFlowTestActivity : AppCompatActivity() {
                     binding.preview.background = null
                     binding.preview.setImageBitmap(bp)
                     binding.noPhotoText.visibility = View.INVISIBLE
+                    imageUri=data?.data!!
+                    binding.preview.setImageURI(imageUri)
                 }
             }
         }else if(requestCode == OPERATION_CHOOSE_PHOTO){
             if (resultCode == RESULT_OK) {
-                imgView.setImageURI(data?.data)
+                val imgView = data?.data
+                binding.preview.setImageURI(imgView)
                 var uri: Uri?= data?.data
                 bitmap = MediaStore.Images.Media.getBitmap(this.contentResolver, uri)
                 binding.noPhotoText.visibility = View.INVISIBLE
+                imageUri=data?.data!!
+                binding.preview.setImageURI(imageUri)
             }
         }
-
     }
 
     private fun getMax(arr:FloatArray) : Int{
@@ -116,4 +140,29 @@ class TensorFlowTestActivity : AppCompatActivity() {
         return ind
     }
 
+    private fun uploadImage(){
+
+        val progressDialog = ProgressDialog(this)
+        progressDialog.setMessage("Uploading file ...")
+        progressDialog.setCancelable(false)
+        progressDialog.show()
+
+        val formatter = SimpleDateFormat("yyyy_MM_dd_MM_mm_ss", Locale.getDefault())
+        val now = Date()
+        val fileName = formatter.format(now)
+
+        val ref = FirebaseStorage.getInstance().getReference("objectsImage/$fileName")
+
+            ref.putFile(imageUri)
+                .addOnSuccessListener {
+                    binding.preview.setImageURI(imageUri)
+                    Toast.makeText(this, "Success", Toast.LENGTH_LONG).show()
+                    progressDialog.dismiss()
+                }
+                .addOnFailureListener {
+                    Toast.makeText(this, "Fail", Toast.LENGTH_LONG).show()
+                    progressDialog.dismiss()
+                }
+
+    }
 }

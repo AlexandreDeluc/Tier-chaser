@@ -11,11 +11,15 @@ class FilActuActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_fil_actu)
 
-        //injecter le fragment dans notre boite (fragment_container2)
-        val transaction = supportFragmentManager.beginTransaction()
-        transaction.replace(R.id.fragment_container2, FilActuFragment(this))
-        transaction.addToBackStack(null)
-        transaction.commit()
+        //charger notre repertoire
+        val repo = FilActuRepository()
 
+        repo.updateData{
+            //injecter le fragment dans notre boite (fragment_container2)
+            val transaction = supportFragmentManager.beginTransaction()
+            transaction.replace(R.id.fragment_container2, FilActuFragment(this))
+            transaction.addToBackStack(null)
+            transaction.commit()
+        }
     }
 }

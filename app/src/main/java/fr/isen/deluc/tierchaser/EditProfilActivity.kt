@@ -47,7 +47,7 @@ class EditProfilActivity : AppCompatActivity() {
         progressDialog.show()
 
 
-        val ref = FirebaseStorage.getInstance().getReference("images/")
+        val ref = FirebaseStorage.getInstance().getReference("objectsImage/")
         ref.putFile(imageUri)
             .addOnSuccessListener {
                 binding.profilPhoto.setImageURI(imageUri)
@@ -62,7 +62,7 @@ class EditProfilActivity : AppCompatActivity() {
 
     private fun pickImage() {
         val intent = Intent()
-        intent.type = "image/*"
+        intent.type = "objectsImage/*"
         intent.action = Intent.ACTION_GET_CONTENT
         startActivityForResult(intent, 100)
     }

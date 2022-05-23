@@ -48,11 +48,9 @@ class FilActuAdapter (
         else {
             holder.starIcon.setImageResource((R.drawable.ic_unlike))
         }
-
     }
 
     override fun getItemCount(): Int {
         return filActuList.size
     }
-
 }
