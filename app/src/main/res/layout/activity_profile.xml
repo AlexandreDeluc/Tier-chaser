@@ -2,90 +2,101 @@
 
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/profil"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
+    <TextView
+        android:id="@+id/title_tensor"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Publier une image"
+        android:layout_marginTop="@dimen/default_margin"
+        android:textColor="@color/teal_700"
+        android:textSize="24sp"
+        android:layout_marginLeft="@dimen/default_margin"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <ImageView
-        android:id="@+id/letftPicture"
+        android:id="@+id/leftPicture"
         android:layout_width="80dp"
         android:layout_height="80dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="@dimen/default_margin"
         android:src="@drawable/ic_profile"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/title_tensor"/>
 
     <TextView
         android:id="@+id/nbPublication"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginLeft="50dp"
+        android:layout_marginTop="@dimen/default_margin"
         android:text="0"
         android:textStyle="bold"
-
-        app:layout_constraintEnd_toEndOf="@+id/publication"
-        app:layout_constraintStart_toStartOf="@+id/publication"
-        app:layout_constraintTop_toTopOf="@+id/nbFollowers" />
+        app:layout_constraintStart_toEndOf="@+id/leftPicture"
+        app:layout_constraintTop_toBottomOf="@+id/title_tensor" />
 
     <TextView
         android:id="@+id/publication"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="32dp"
         android:text="@string/nbPublication"
-        app:layout_constraintEnd_toStartOf="@+id/followers"
-        app:layout_constraintTop_toTopOf="@+id/followers" />
+        app:layout_constraintEnd_toEndOf="@+id/nbPublication"
+        app:layout_constraintStart_toStartOf="@+id/nbPublication"
+        app:layout_constraintTop_toBottomOf="@+id/nbPublication" />
 
     <TextView
         android:id="@+id/nbFollowers"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="0"
+        android:layout_marginLeft="35dp"
+        android:layout_marginTop="@dimen/default_margin"
         android:textStyle="bold"
-        app:layout_constraintBottom_toTopOf="@+id/followers"
-        app:layout_constraintEnd_toEndOf="@+id/followers"
-        app:layout_constraintStart_toStartOf="@+id/followers" />
+        app:layout_constraintStart_toEndOf="@+id/publication"
+        app:layout_constraintTop_toBottomOf="@+id/title_tensor" />
 
     <TextView
         android:id="@+id/followers"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="32dp"
         android:text="@string/followers"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/letftPicture"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintEnd_toEndOf="@+id/nbFollowers"
+        app:layout_constraintStart_toStartOf="@+id/nbFollowers"
+        app:layout_constraintTop_toBottomOf="@+id/nbFollowers" />
 
     <TextView
         android:id="@+id/nbFollowing"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="0"
+        android:layout_marginLeft="50dp"
         android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="@+id/following"
-        app:layout_constraintStart_toStartOf="@+id/following"
-        app:layout_constraintTop_toTopOf="@+id/nbFollowers" />
+        android:layout_marginTop="@dimen/default_margin"
+        app:layout_constraintStart_toEndOf="@+id/followers"
+        app:layout_constraintTop_toBottomOf="@+id/title_tensor"/>
 
     <TextView
         android:id="@+id/following"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="32dp"
         android:text="@string/following"
-        app:layout_constraintStart_toEndOf="@+id/followers"
-        app:layout_constraintTop_toTopOf="@+id/followers" />
+        app:layout_constraintEnd_toEndOf="@+id/nbFollowing"
+        app:layout_constraintStart_toStartOf="@+id/nbFollowing"
+        app:layout_constraintTop_toBottomOf="@+id/nbFollowing" />
 
     <TextView
-        android:id="@+id/name"
-        android:layout_width="0dp"
+        android:id="@+id/username"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:gravity="center"
-        android:textStyle="bold"
-        app:layout_constraintStart_toStartOf="@+id/letftPicture"
-        app:layout_constraintTop_toBottomOf="@+id/letftPicture" />
+        android:layout_marginTop="@dimen/default_margin"
+        android:layout_marginLeft="@dimen/default_margin"
+        android:text="@string/username"
+        app:layout_constraintStart_toEndOf="@+id/leftPicture"
+        app:layout_constraintTop_toBottomOf="@+id/publication" />
 
     <Button
         android:id="@+id/editBtn"
@@ -96,21 +107,13 @@
         android:layout_marginRight="@dimen/default_margin"
         android:text="@string/editProfil"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="@+id/bio"
-        app:layout_constraintTop_toBottomOf="@+id/letftPicture" />
-
-    <TextView
-        android:id="@+id/bio"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_constraintStart_toStartOf="@+id/name"
-        app:layout_constraintTop_toBottomOf="@+id/name" />
+        app:layout_constraintTop_toBottomOf="@+id/leftPicture" />
 
     <FrameLayout
         android:id="@+id/fragment_container3"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginTop="200dp"/>
+        android:layout_marginTop="220dp"/>
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

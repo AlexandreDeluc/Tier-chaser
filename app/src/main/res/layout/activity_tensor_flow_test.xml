@@ -6,72 +6,108 @@
     android:layout_height="match_parent"
     tools:context=".TensorFlowTestActivity">
 
+
+    <TextView
+        android:id="@+id/title_tensor"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Publier une image"
+        android:textColor="@color/teal_700"
+        android:textSize="24sp"
+        android:layout_marginLeft="@dimen/default_margin"
+        android:layout_marginTop="10dp"
+        app:layout_constraintBottom_toTopOf="@+id/linearLayout"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+
     <LinearLayout
         android:id="@+id/linearLayout"
         android:layout_width="match_parent"
-        android:layout_height="200dp"
+        android:layout_height="wrap_content"
         android:background="@color/grey"
+        android:orientation="vertical"
+        android:layout_marginTop="40dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
-
-        <ImageView
-
-            android:id="@+id/preview"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:adjustViewBounds="true"
-            android:background="@drawable/ic_photo"
-            android:backgroundTint="@color/white"
-            android:paddingVertical="10dp" />
+        app:layout_constraintTop_toTopOf="@id/title_tensor">
 
         <TextView
-            android:id="@+id/tv"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:gravity="center"
-            android:text="Aucune photo ajoutée" />
+            android:id="@+id/noPhotoText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Veuillez ajouter une photo"
+            android:layout_marginTop="@dimen/default_margin"
+            android:layout_marginLeft="@dimen/default_margin"/>
+
+        <ImageView
+            android:id="@+id/preview"
+            android:layout_width="200dp"
+            android:layout_height="300dp"
+            android:layout_gravity="center"
+            android:adjustViewBounds="true"
+            android:paddingVertical="10dp"/>
+
     </LinearLayout>
 
     <LinearLayout
+        android:id="@+id/linearLayout2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
+        android:layout_marginTop="@dimen/default_margin"
         app:layout_constraintTop_toBottomOf="@+id/linearLayout">
 
         <Button
-            android:id="@+id/selectButton"
+            android:id="@+id/importPhotoButton"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/default_margin"
+            android:layout_marginRight="10dp"
             android:layout_weight="1"
-            android:text="select"
+            android:text="IMPORT PICTURE"
+            android:textSize="12sp"
             app:layout_constraintEnd_toStartOf="@+id/predictButton"
             app:layout_constraintHorizontal_bias="0.619"
             app:layout_constraintStart_toStartOf="parent"
             tools:layout_editor_absoluteY="272dp" />
 
         <Button
+            android:id="@+id/takePhotoButton"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="@dimen/default_margin"
+            android:layout_weight="1"
+            android:text="TAKE PICTURE"
+            android:textSize="12sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            tools:layout_editor_absoluteY="272dp" />
+
+        <Button
             android:id="@+id/predictButton"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="@dimen/default_margin"
             android:layout_weight="1"
-
-            android:text="predict"
+            android:text="PREDICT OBJECT"
+            android:textSize="12sp"
             app:layout_constraintEnd_toEndOf="parent"
             tools:layout_editor_absoluteY="272dp" />
+
 
     </LinearLayout>
 
     <TextView
         android:id="@+id/textView"
-        android:layout_width="151dp"
-        android:layout_height="162dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:text="Select and press Predict"
         android:textSize="20sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout2" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

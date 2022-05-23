@@ -29,7 +29,7 @@ class ProfileActivity : AppCompatActivity() {
         val localfile = File.createTempFile("tempImage", "png")
         storageRef.getFile(localfile).addOnSuccessListener {
             val bitmap = BitmapFactory.decodeFile(localfile.absolutePath)
-            binding.letftPicture.setImageBitmap(bitmap)
+            binding.leftPicture.setImageBitmap(bitmap)
         }
             .addOnFailureListener{
                 Toast.makeText(this, "Fail", Toast.LENGTH_LONG).show()

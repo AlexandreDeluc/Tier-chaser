@@ -42,12 +42,17 @@ class TensorFlowTestActivity : AppCompatActivity() {
         var townList = inputString.split("\n")
         var tv:TextView = findViewById(R.id.textView)
 
-        binding.selectButton.setOnClickListener(View.OnClickListener {
-            var intent: Intent = Intent(Intent.ACTION_GET_CONTENT)
+        binding.importPhotoButton.setOnClickListener(View.OnClickListener {
+            var intent: Intent = Intent("android.intent.action.GET_CONTENT")
             intent.type = "image/*"
-            startActivityForResult(intent, 100)
+            startActivityForResult(intent, OPERATION_CHOOSE_PHOTO)
         })
 
+        binding.takePhotoButton.setOnClickListener(View.OnClickListener {
+            //Start Camera
+            var cInt: Intent = Intent(MediaStore.ACTION_IMAGE_CAPTURE)
+            startActivityForResult(cInt, Image_Capture_Code)
+        })
 
         binding.predictButton.setOnClickListener(View.OnClickListener {
 
@@ -71,13 +76,10 @@ class TensorFlowTestActivity : AppCompatActivity() {
 // Releases model resources if no longer used.
             model.close()
         })
-
-
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
-
 
         if (requestCode == Image_Capture_Code) {
             if (resultCode == RESULT_OK) {
@@ -85,27 +87,21 @@ class TensorFlowTestActivity : AppCompatActivity() {
                 if(bp != null){
                     binding.preview.background = null
                     binding.preview.setImageBitmap(bp)
-                    binding.tv.visibility = View.INVISIBLE
+                    binding.noPhotoText.visibility = View.INVISIBLE
                 }
             }
         }else if(requestCode == OPERATION_CHOOSE_PHOTO){
             if (resultCode == RESULT_OK) {
-                binding.preview.background = null
-
-                val imageUri = data?.data
-                binding.preview.setImageURI(imageUri)
-                binding.tv.visibility = View.INVISIBLE
+                imgView.setImageURI(data?.data)
+                var uri: Uri?= data?.data
+                bitmap = MediaStore.Images.Media.getBitmap(this.contentResolver, uri)
+                binding.noPhotoText.visibility = View.INVISIBLE
             }
         }
 
-        imgView.setImageURI(data?.data)
-
-        var uri: Uri?= data?.data
-
-        bitmap = MediaStore.Images.Media.getBitmap(this.contentResolver, uri)
     }
 
-    fun getMax(arr:FloatArray) : Int{
+    private fun getMax(arr:FloatArray) : Int{
         var ind = 0
         var min = 0.0f
 

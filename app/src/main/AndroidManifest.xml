@@ -33,21 +33,17 @@
             android:name=".MapsActivity"
             android:exported="false"
             android:label="@string/title_activity_maps" />
+
         <activity
             android:name=".EditProfilActivity"
             android:exported="false"
             android:label="@string/title_activity_edit_profil"
             android:theme="@style/Theme.TierChaser.NoActionBar" />
+
         <activity
-            android:name=".ProfileActivity"
+            android:name=".LoadingActivity"
             android:exported="false" />
-        <activity
-            android:name=".TensorFlowTestActivity"
-            android:exported="false" />
-        <activity
-            android:name=".PublishActivity"
-            android:exported="false"
-            android:label="PublishActivity" />
+
         <activity
             android:name=".HomeActivity"
             android:exported="false" />
@@ -64,10 +60,10 @@
             android:name=".RegisterActivity"
             android:exported="false" />
         <activity
-            android:name=".LoginActivity"
+            android:name=".ProfileActivity"
             android:exported="false" />
         <activity
-            android:name=".LoadingActivity"
+            android:name=".TensorFlowTestActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

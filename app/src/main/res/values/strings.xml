@@ -70,9 +70,9 @@
     <string name="deleteUser">Supprimer le compte</string>
 
     // Profil
-    <string name="nbPublication">Publication</string>
-    <string name="followers">Abonés</string>
-    <string name="following">Abonements</string>
+    <string name="nbPublication">Publications</string>
+    <string name="followers">Abonnés</string>
+    <string name="following">Abonnements</string>
     <string name="editProfil">Editer le profil</string>
 
     // Edit Profil
