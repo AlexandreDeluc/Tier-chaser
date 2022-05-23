@@ -56,7 +56,7 @@
     // Login
 
     <string name="connect">Se connecter</string>
-    <string name="loginTitle">Veuillez-vous identifier</string>
+    <string name="loginTitle">S\'identifier</string>
     <string name="noAccountBtn">Créer un compte</string>
     <string name="forgotPassword">Mot de passe oublié ?</string>
 
