@@ -11,40 +11,41 @@
 
     // Register
 
-    <string name="createAccount">Create an Account</string>
-    <string name="username">Username</string>
+    <string name="createAccount">Créer un compte</string>
+    <string name="username">Nom d\'utilisateur</string>
     <string name="email">Email</string>
-    <string name="password">Password</string>
-    <string name="validateBtn">Register</string>
-    <string name="alreadyBtn">Already have an account ?</string>
+    <string name="password">Mot de Passe</string>
+    <string name="validateBtn">Valider</string>
+    <string name="alreadyBtn">J\'ai déjà un compte</string>
 
     // Login
 
-    <string name="loginTitle">Login</string>
-    <string name="noAccountBtn">Don\'t have an account ?</string>
-    <string name="forgotPassword">Forgot your password ?</string>
+    <string name="loginTitle">Se Connecter</string>
+    <string name="noAccountBtn">J\'ai déjà un compte</string>
+    <string name="forgotPassword">Mot de passe oublié ?</string>
 
     // Verification
 
-    <string name="verificationTitle">Verify your mail</string>
-    <string name="verify">Send verification mail</string>
-    <string name="backToLogin">Back to Login</string>
+    <string name="verificationTitle">Vérifier votre compte</string>
+    <string name="verify">Envoyer l\'email de vérification</string>
+    <string name="backToLogin">Se connecter</string>
 
     // Home
-    <string name="logoutBtn">Log Out</string>
-    <string name="deleteUser">Delete Account</string>
+    <string name="logoutBtn">Se déconnecter</string>
+    <string name="deleteUser">Supprimer le compte</string>
 
     // Profil
     <string name="nbPublication">Publication</string>
-    <string name="followers">Followers</string>
-    <string name="following">Following</string>
-    <string name="editProfil">Edit Profil</string>
+    <string name="followers">Abonés</string>
+    <string name="following">Abonements</string>
+    <string name="editProfil">Editer le profil</string>
 
     // Edit Profil
-    <string name="editPhoto">Edit profil picture ?</string>
-    <string name="editUserName">Edit username ?</string>
-    <string name="editBio">Edit bio ?</string>
-    <string name="newUsername">Enter a new userName</string>
-    <string name="newBio">Enter a new bio</string>*
-    <string name="saveBtn">Save</string>
+    <string name="editPhoto">Changer votre photo de profil ?</string>
+    <string name="editUserName">Changer de nom d\'utilisateur ?</string>
+    <string name="editBio">Changer de bio ?</string>
+    <string name="newUsername">Entrer un nouveau nom d\'utilisateur</string>
+    <string name="newBio">Entrer une nouvelle bio</string>
+    <string name="saveBtn">Enregistrer</string>
+    <string name="msg_token_fmt">message</string>
 </resources>

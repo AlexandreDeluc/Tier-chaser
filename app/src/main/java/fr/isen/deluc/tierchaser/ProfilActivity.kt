@@ -1,21 +1,25 @@
 package fr.isen.deluc.tierchaser
 
 import android.content.Intent
+import android.graphics.BitmapFactory
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import com.bumptech.glide.Glide
+import android.widget.Toast
 import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.database.DataSnapshot
-import com.google.firebase.database.DatabaseError
-import com.google.firebase.database.FirebaseDatabase
-import com.google.firebase.database.ValueEventListener
+import com.google.firebase.database.*
+import com.google.firebase.database.ktx.database
+import com.google.firebase.ktx.Firebase
+import com.google.firebase.storage.FirebaseStorage
 import fr.isen.deluc.tierchaser.databinding.ActivityProfilBinding
-import java.lang.Exception
-import java.lang.System.load
+import kotlinx.android.synthetic.main.activity_profil.*
+import java.io.File
 
 class ProfilActivity : AppCompatActivity() {
     lateinit var binding: ActivityProfilBinding
     lateinit var firebaseAuth: FirebaseAuth
+    lateinit var usernameFB: String
+    lateinit var bioFB: String
+    lateinit var database: DatabaseReference
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -24,39 +28,46 @@ class ProfilActivity : AppCompatActivity() {
 
         firebaseAuth = FirebaseAuth.getInstance()
 
-        loadUserInfo()
+        database = Firebase.database(URL).reference
 
         binding.editBtn.setOnClickListener {
             val intent = Intent(this, EditProfilActivity::class.java)
             startActivity(intent)
-            finish()
+        }
+
+        retrieveDataUsername()
+        retrieveDataBio()
+
+        val storageRef = FirebaseStorage.getInstance().getReference("images/")
+        val localfile = File.createTempFile("tempImage", "png")
+        storageRef.getFile(localfile).addOnSuccessListener {
+            val bitmap = BitmapFactory.decodeFile(localfile.absolutePath)
+            binding.letftPicture.setImageBitmap(bitmap)
+        }
+            .addOnFailureListener{
+                Toast.makeText(this, "Fail", Toast.LENGTH_LONG).show()
+            }
+
+    }
+    private fun retrieveDataUsername() {
+        database.child("Profil").child("username").get().addOnSuccessListener {
+            if(it.exists()) {
+                usernameFB = it.value.toString()
+                binding.username.text = usernameFB.toString()
+            }
         }
     }
-    private fun loadUserInfo() {
-        val ref = FirebaseDatabase.getInstance().getReference("Users")
-        ref.child(firebaseAuth.uid!!)
-            .addValueEventListener(object: ValueEventListener{
-                override fun onDataChange(snapshot: DataSnapshot) {
-                    val username = "${snapshot.child("name").value}"
-                    val profilPicture = "${snapshot.child("imProfile").value}"
 
-                    binding.name.text = username
+    private fun retrieveDataBio() {
+        database.child("Profil").child("bio").get().addOnSuccessListener {
+            if (it.exists()) {
+                bioFB = it.value.toString()
+                binding.bio.text = bioFB.toString()
+            }
+        }
+    }
 
-                    try {
-                        Glide.with(this@ProfilActivity)
-                            .load(profilPicture)
-                            .placeholder(R.drawable.ic_launcher_background)
-                            .into(binding.letftPicture)
-                    }
-                    catch (e:Exception){
-
-                    }
-
-                }
-
-                override fun onCancelled(error: DatabaseError) {
-                }
-
-            })
+    companion object {
+        private const val URL = "https://tierchaser-default-rtdb.firebaseio.com/"
     }
 }

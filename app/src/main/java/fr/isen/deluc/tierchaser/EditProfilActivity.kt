@@ -1,169 +1,81 @@
 package fr.isen.deluc.tierchaser
 
-import android.app.Activity
 import android.app.ProgressDialog
-import android.content.ContentValues
-import android.content.ContentValues.TAG
 import android.content.Intent
 import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.provider.MediaStore
-import android.util.Log
-import android.view.Menu
-import android.widget.PopupMenu
 import android.widget.Toast
-import androidx.activity.result.ActivityResult
-import androidx.activity.result.ActivityResultCallback
-import androidx.activity.result.contract.ActivityResultContracts
-import com.bumptech.glide.Glide
-import com.google.android.gms.tasks.Task
-import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.database.DataSnapshot
-import com.google.firebase.database.DatabaseError
+import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
-import com.google.firebase.database.ValueEventListener
 import com.google.firebase.storage.FirebaseStorage
 import fr.isen.deluc.tierchaser.databinding.ActivityEditProfilBinding
-import java.lang.Exception
 
 class EditProfilActivity : AppCompatActivity() {
     lateinit var binding: ActivityEditProfilBinding
-    lateinit var firebaseAuth: FirebaseAuth
-    private var imageUri: Uri?=null
-    private lateinit var progressDialog: ProgressDialog
-
+    lateinit var imageUri: Uri
+    lateinit var database: DatabaseReference
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityEditProfilBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        progressDialog = ProgressDialog(this)
-        progressDialog.setTitle("Please wait")
-        progressDialog.setCanceledOnTouchOutside(false)
-
-        firebaseAuth = FirebaseAuth.getInstance()
-        loadUserInfo()
-
-        binding.backToProfil.setOnClickListener {
-            val intent = Intent(this, ProfilActivity::class.java)
-            startActivity(intent)
-            finish()
+        binding.profilPhoto.setOnClickListener {
+            pickImage()
         }
 
         binding.saveBtn.setOnClickListener {
-            validateData()
+            saveImage()
+        }
+        binding.backToProfil.setOnClickListener {
+            val intent = Intent(this, ProfilActivity::class.java)
+            startActivity(intent)
         }
 
-        binding.profilPhoto.setOnClickListener {
-            pickImageGallery()
+        val bio: String = binding.editBio.text.toString()
+        val newUsername: String = binding.editUsername.text.toString()
+
+        database = FirebaseDatabase.getInstance().getReference("Users")
+        if(newUsername.isEmpty()) {
+            database.child("UserID").setValue(newUsername)
         }
-    }
-
-        fun loadUserInfo() {
-            val ref = FirebaseDatabase.getInstance().getReference("Users")
-            ref.child(firebaseAuth.uid!!)
-                .addValueEventListener(object: ValueEventListener {
-                    override fun onDataChange(snapshot: DataSnapshot) {
-                        val username = "${snapshot.child("name").value}"
-                        val profilPicture = "${snapshot.child("imProfile").value}"
-
-                        binding.editUsername.setText(username)
-
-                        try {
-                            Glide.with(this@EditProfilActivity)
-                                .load(profilPicture)
-                                .placeholder(R.drawable.ic_launcher_background)
-                                .into(binding.profilPhoto)
-                        }
-                        catch (e: Exception){
-
-                        }
-
-                    }
-
-                    override fun onCancelled(error: DatabaseError) {
-
-                    }
-
-                })
-        }
-
-    private fun pickImageGallery(){
-        val intent = Intent(Intent.ACTION_PICK)
-        intent.type = "image/*"
-        galleryActivityResultLauncher.launch(intent)
-    }
-    private var name = ""
-    private fun validateData() {
-        name = binding.editUsername.text.toString().trim()
-
-        if(name.isEmpty()) {
-            Toast.makeText(this, "Enter a name", Toast.LENGTH_LONG).show()
-        }
-        else {
-            if(imageUri == null) {
-                updateProfil("")
-            }
-            else {
-                uploadImage()
-            }
+        if(bio.isNotEmpty()){
+            database.child("UserID").setValue(bio)
         }
     }
 
-    private fun uploadImage() {
-        progressDialog.setMessage("Uploading profile message")
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        if(requestCode==100 && resultCode== RESULT_OK){
+            imageUri=data?.data!!
+            binding.profilPhoto.setImageURI(imageUri)
+        }
+    }
+
+    private fun saveImage() {
+        val progressDialog = ProgressDialog(this)
+        progressDialog.setMessage("Uploading file ...")
+        progressDialog.setCancelable(false)
         progressDialog.show()
 
-        val filePathAndName = "ProfileImages/*"+firebaseAuth.uid
-        val reference = FirebaseStorage.getInstance().getReference(filePathAndName)
-        reference.putFile(imageUri!!)
-            .addOnSuccessListener { taskSnapshot->
-                val uriTask: Task<Uri> = taskSnapshot.storage.downloadUrl
-                while (!uriTask.isSuccessful);
-                val uploadedImageUrl = "${uriTask.result}"
 
-                updateProfil(uploadedImageUrl)
-            }
-            .addOnFailureListener{e->
-                progressDialog.dismiss()
-                Toast.makeText(this, "Failed to upload due to ${e.message}", Toast.LENGTH_LONG).show()
-            }
-    }
-
-    private fun updateProfil(uploadedImageUrl: String) {
-        progressDialog.setMessage("Updating profile ...")
-
-        val hashmap: HashMap<String, Any> = HashMap()
-        hashmap["name"]= name
-        if(imageUri != null){
-            hashmap["imProfile"] = uploadedImageUrl
-        }
-        val reference = FirebaseDatabase.getInstance().getReference("Users")
-        reference.child(firebaseAuth.uid!!)
-            .updateChildren(hashmap)
+        val ref = FirebaseStorage.getInstance().getReference("images/")
+        ref.putFile(imageUri)
             .addOnSuccessListener {
+                binding.profilPhoto.setImageURI(imageUri)
+                Toast.makeText(this, "Success", Toast.LENGTH_LONG).show()
                 progressDialog.dismiss()
-                Toast.makeText(this, "Profil updated", Toast.LENGTH_LONG).show()
             }
-            .addOnFailureListener {e->
+            .addOnFailureListener {
+                Toast.makeText(this, "Fail", Toast.LENGTH_LONG).show()
                 progressDialog.dismiss()
-                Toast.makeText(this, "Failed to update profile due to ${e.message}", Toast.LENGTH_LONG).show()
             }
     }
 
-    private val galleryActivityResultLauncher = registerForActivityResult(
-        ActivityResultContracts.StartActivityForResult(),
-        ActivityResultCallback<ActivityResult> {result ->
-            if(result.resultCode == Activity.RESULT_OK){
-                val data = result.data
-                imageUri = data!!.data
-
-                binding.profilPhoto.setImageURI(imageUri)
-            }
-            else{
-                Toast.makeText(this, "Cancelled", Toast.LENGTH_LONG).show()
-            }
-        }
-    )
+    private fun pickImage() {
+        val intent = Intent()
+        intent.type = "image/*"
+        intent.action = Intent.ACTION_GET_CONTENT
+        startActivityForResult(intent, 100)
+    }
 }
