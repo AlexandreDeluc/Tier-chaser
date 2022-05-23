@@ -4,8 +4,6 @@ import android.app.AlertDialog
 import android.content.DialogInterface
 import android.content.Intent
 import android.os.Bundle
-import android.text.InputType
-import android.widget.EditText
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.google.android.gms.maps.CameraUpdateFactory
@@ -29,10 +27,10 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
         binding = ActivityMapsBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-            // Obtain the SupportMapFragment and get notified when the map is ready to be used.
-            val mapFragment = supportFragmentManager
-                .findFragmentById(R.id.map) as SupportMapFragment
-            mapFragment.getMapAsync(this)
+        // Obtain the SupportMapFragment and get notified when the map is ready to be used.
+        val mapFragment = supportFragmentManager
+            .findFragmentById(R.id.map) as SupportMapFragment
+        mapFragment.getMapAsync(this)
     }
 
 
@@ -64,34 +62,34 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
 
     private fun setNewMarket(map: GoogleMap){
 
-            val database = Firebase.database("https://tierchaser-default-rtdb.firebaseio.com/").getReference("Markets")
+        val database = Firebase.database("https://tierchaser-default-rtdb.firebaseio.com/").getReference("Markets")
 
-            database.get().addOnSuccessListener {
+        database.get().addOnSuccessListener {
 
-                for (ds in it.children) {
+            for (ds in it.children) {
 
-                    Toast.makeText(this,"La base de donnees a été lue", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this,"La base de donnees a été lue", Toast.LENGTH_SHORT).show()
 
-                            if (it.exists()) {
+                if (it.exists()) {
 
-                                val latitude = ds.child("latitude").getValue(Double::class.java) as Double
-                                val longitude = ds.child("longitude").getValue(Double::class.java) as Double
-                                val name = ds.child("name").getValue(String::class.java)
-                                val cities = LatLng(latitude, longitude)
-                                val zoomLevel = 15f // f : float number
+                    val latitude = ds.child("latitude").getValue(Double::class.java) as Double
+                    val longitude = ds.child("longitude").getValue(Double::class.java) as Double
+                    val name = ds.child("name").getValue(String::class.java)
+                    val cities = LatLng(latitude, longitude)
+                    val zoomLevel = 15f // f : float number
 
-                                map.addMarker(MarkerOptions().position(cities).title(name))
-                                map.moveCamera(CameraUpdateFactory.newLatLngZoom(cities, zoomLevel))
+                    map.addMarker(MarkerOptions().position(cities).title(name))
+                    map.moveCamera(CameraUpdateFactory.newLatLngZoom(cities, zoomLevel))
 
 
-                                mMap.setOnMarkerClickListener { marker -> // on marker click we are getting the title of our marker
-                                    showDialog()
-                                    false
-                                }
-
-                            }
+                    mMap.setOnMarkerClickListener { marker -> // on marker click we are getting the title of our marker
+                        showDialog()
+                        false
+                    }
 
                 }
+
             }
+        }
     }
 }

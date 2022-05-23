@@ -7,9 +7,9 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.provider.MediaStore
 import android.view.View
-import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
+import fr.isen.deluc.tierchaser.databinding.ActivityTensorFlowTestBinding
 import fr.isen.deluc.tierchaser.ml.MobilenetV110224Quant
 import org.tensorflow.lite.DataType
 import org.tensorflow.lite.support.image.TensorImage
@@ -19,29 +19,37 @@ class TensorFlowTestActivity : AppCompatActivity() {
 
     lateinit var bitmap: Bitmap
     lateinit var imgView: ImageView
+    lateinit var binding: ActivityTensorFlowTestBinding
+
+    val Image_Capture_Code = 99
+    val OPERATION_CHOOSE_PHOTO = 98
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_tensor_flow_test)
+        binding = ActivityTensorFlowTestBinding.inflate(layoutInflater)
+        setContentView(binding.root)
 
-        imgView = findViewById(R.id.imageView)
+        imgView = findViewById(R.id.preview)
+
+        listenClick()
+
+    }
+
+    private fun listenClick(){
 
         val fileName = "labels.txt"
         val inputString = application.assets.open(fileName).bufferedReader().use { it.readText() }
         var townList = inputString.split("\n")
-
         var tv:TextView = findViewById(R.id.textView)
 
-        var select: Button = findViewById(R.id.selectButton)
-        select.setOnClickListener(View.OnClickListener {
+        binding.selectButton.setOnClickListener(View.OnClickListener {
             var intent: Intent = Intent(Intent.ACTION_GET_CONTENT)
             intent.type = "image/*"
             startActivityForResult(intent, 100)
         })
 
 
-        var predict:Button = findViewById(R.id.predictButton)
-        predict.setOnClickListener(View.OnClickListener {
+        binding.predictButton.setOnClickListener(View.OnClickListener {
 
             var resized: Bitmap = Bitmap.createScaledBitmap(bitmap, 224, 224, true)
             val model = MobilenetV110224Quant.newInstance(this)
@@ -63,10 +71,32 @@ class TensorFlowTestActivity : AppCompatActivity() {
 // Releases model resources if no longer used.
             model.close()
         })
+
+
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
+
+
+        if (requestCode == Image_Capture_Code) {
+            if (resultCode == RESULT_OK) {
+                val bp = data?.extras!!["data"] as Bitmap?
+                if(bp != null){
+                    binding.preview.background = null
+                    binding.preview.setImageBitmap(bp)
+                    binding.tv.visibility = View.INVISIBLE
+                }
+            }
+        }else if(requestCode == OPERATION_CHOOSE_PHOTO){
+            if (resultCode == RESULT_OK) {
+                binding.preview.background = null
+
+                val imageUri = data?.data
+                binding.preview.setImageURI(imageUri)
+                binding.tv.visibility = View.INVISIBLE
+            }
+        }
 
         imgView.setImageURI(data?.data)
 
@@ -89,4 +119,5 @@ class TensorFlowTestActivity : AppCompatActivity() {
         }
         return ind
     }
+
 }

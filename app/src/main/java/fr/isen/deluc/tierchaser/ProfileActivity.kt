@@ -42,11 +42,14 @@ class ProfileActivity : AppCompatActivity() {
         }
 
         repo.updateData {
-            val transaction = supportFragmentManager.beginTransaction()
-            transaction.replace(R.id.fragment_container3, ProfileFragment(this))
-            transaction.addToBackStack(null)
-            transaction.commit()
+                val transaction = supportFragmentManager.beginTransaction()
+                transaction.replace(R.id.fragment_container3, ProfileFragment(this))
+                transaction.addToBackStack(null)
+                transaction.commit()
         }
+
+
+
 
     }
 }
