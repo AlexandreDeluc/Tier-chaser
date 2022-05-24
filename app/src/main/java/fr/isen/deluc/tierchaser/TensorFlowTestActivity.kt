@@ -52,7 +52,6 @@ class TensorFlowTestActivity : AppCompatActivity() {
 
         lien = findViewById(R.id.linkObject)
 
-
         val fileName = "labels.txt"
         val inputString = application.assets.open(fileName).bufferedReader().use { it.readText() }
         val townList = inputString.split("\n")
@@ -93,6 +92,11 @@ class TensorFlowTestActivity : AppCompatActivity() {
 // Releases model resources if no longer used.
             model.close()
 
+        })
+
+
+        binding.postObject.setOnClickListener(View.OnClickListener {
+
             val progressDialog = ProgressDialog(this)
             progressDialog.setMessage("Uploading file ...")
             progressDialog.setCancelable(false)
@@ -115,6 +119,8 @@ class TensorFlowTestActivity : AppCompatActivity() {
                     progressDialog.dismiss()
                 }
         })
+
+
 
         binding.linkObject.setOnClickListener(View.OnClickListener {
 
