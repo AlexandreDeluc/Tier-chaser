@@ -19,6 +19,7 @@ class ImageAdapter(private val imageList: ArrayList<String>) :
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
+
         // loading the images from the position
         Glide.with(holder.itemView.context).load(imageList[position]).into(holder.image)
     }

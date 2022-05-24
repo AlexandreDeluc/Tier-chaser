@@ -5,10 +5,11 @@ import android.graphics.BitmapFactory
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
+import androidx.recyclerview.widget.RecyclerView
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.storage.FirebaseStorage
+import fr.isen.deluc.tierchaser.adapter.ProfileAdapter
 import fr.isen.deluc.tierchaser.databinding.ActivityProfileBinding
-import fr.isen.deluc.tierchaser.fragments.ProfileFragment
 import java.io.File
 
 class ProfileActivity : AppCompatActivity() {
@@ -42,14 +43,11 @@ class ProfileActivity : AppCompatActivity() {
         }
 
         repo.updateData {
-                val transaction = supportFragmentManager.beginTransaction()
-                transaction.replace(R.id.fragment_container3, ProfileFragment(this))
-                transaction.addToBackStack(null)
-                transaction.commit()
+
+            val verticalRecyclerView = findViewById<RecyclerView>(R.id.vertical_recycler_view)
+            verticalRecyclerView.adapter = ProfileAdapter(this, repo.objectList, R.layout.item_vertical_profile)
+
         }
-
-
-
 
     }
 }

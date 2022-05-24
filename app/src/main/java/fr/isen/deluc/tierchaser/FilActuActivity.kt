@@ -8,7 +8,6 @@ import com.google.firebase.storage.FirebaseStorage
 import com.google.firebase.storage.StorageReference
 import fr.isen.deluc.tierchaser.adapter.ImageAdapter
 import fr.isen.deluc.tierchaser.databinding.ActivityFilActuBinding
-import fr.isen.deluc.tierchaser.fragments.FilActuFragment
 
 class FilActuActivity : AppCompatActivity() {
 
@@ -23,8 +22,6 @@ class FilActuActivity : AppCompatActivity() {
         binding = ActivityFilActuBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        //charger notre repertoire
-        val repo = FilActuRepository()
 
         val listRef = FirebaseStorage.getInstance().reference.child("objectsImage/")
         listRef.listAll().addOnSuccessListener { listResult ->
@@ -39,13 +36,5 @@ class FilActuActivity : AppCompatActivity() {
             }
         }
 
-        repo.updateData{
-            //injecter le fragment dans notre boite (fragment_container2)
-            val transaction = supportFragmentManager.beginTransaction()
-            transaction.replace(R.id.fragment_container2, FilActuFragment(this))
-            transaction.addToBackStack(null)
-            transaction.commit()
-        }
     }
-
 }

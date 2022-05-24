@@ -5,19 +5,18 @@ import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
 import fr.isen.deluc.tierchaser.ObjectRepository.Singleton.databaseRef
-import fr.isen.deluc.tierchaser.ObjectRepository.Singleton.objectList
 
 class ProfileRepository {
+
+
+    //créer une liste qui va contenir nos objets
+    val objectList = arrayListOf<ObjectModel>()
 
 
     object Singleton {
 
         //se connecter à la référence "Objects"
         val databaseRef = FirebaseDatabase.getInstance().getReference("Objects")
-
-        //créer une liste qui va contenir nos objets
-        val objectList = arrayListOf<ObjectModel>()
-
 
     }
 
