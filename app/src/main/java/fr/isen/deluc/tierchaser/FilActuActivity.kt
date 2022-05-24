@@ -1,9 +1,11 @@
 package fr.isen.deluc.tierchaser
 
+import android.net.Uri
 import android.os.Bundle
 import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.bumptech.glide.Glide
 import com.google.firebase.storage.FirebaseStorage
 import com.google.firebase.storage.StorageReference
 import fr.isen.deluc.tierchaser.adapter.ImageAdapter
