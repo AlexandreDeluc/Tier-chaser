@@ -13,6 +13,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.TierChaser">
+        <activity
+            android:name=".TensorFlowTestActivity"
+            android:exported="false" />
 
         <meta-data
             android:name="com.google.android.geo.API_KEY"
@@ -20,50 +23,39 @@
 
         <activity
             android:name=".FilActuActivity"
-            android:exported="false"/>
-
+            android:exported="false" />
         <activity
             android:name=".EditProfilActivity"
             android:exported="false"
             android:theme="@style/Theme.TierChaser.NoActionBar" />
-
         <activity
             android:name=".MapsActivity"
             android:exported="false" />
-
         <activity
             android:name=".LoginActivity"
             android:exported="false" />
-
         <activity
             android:name=".HomeActivity"
             android:exported="false" />
 
         <activity
-            android:name=".LoadingActivity"
-            android:exported="false" />
-
-        <activity
             android:name=".ShowObjectActivity"
             android:exported="false" />
-
         <activity
             android:name=".VerifyActivity"
             android:exported="false" />
-
         <activity
             android:name=".RegisterActivity"
             android:exported="false" />
-
         <activity
             android:name=".ProfileActivity"
             android:exported="false" />
-
         <activity
-            android:name=".TensorFlowTestActivity"
+            android:name=".LoadingActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
@@ -71,7 +63,6 @@
         <uses-library
             android:name="org.apache.http.legacy"
             android:required="false" />
-
     </application>
 
 </manifest>

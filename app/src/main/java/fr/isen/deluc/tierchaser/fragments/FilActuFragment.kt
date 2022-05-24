@@ -7,20 +7,17 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.RecyclerView
 import fr.isen.deluc.tierchaser.FilActuActivity
-import fr.isen.deluc.tierchaser.FilActuRepository.Singleton.filActuList
-import fr.isen.deluc.tierchaser.ObjectModel
+import fr.isen.deluc.tierchaser.FilActuRepository.Companion.filActuList
 import fr.isen.deluc.tierchaser.R
 import fr.isen.deluc.tierchaser.adapter.FilActuAdapter
 
-class FilActuFragment (
-        private val context: FilActuActivity
-        ) : Fragment() {
+class FilActuFragment(private val context: FilActuActivity) : Fragment() {
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        val view = inflater?.inflate(R.layout.fragment_fil_actu, container, false)
+        val view = inflater.inflate(R.layout.fragment_fil_actu, container, false)
 
         val filActuRecyclerView = view.findViewById<RecyclerView>(R.id.filactu_recycler_view)
-        filActuRecyclerView.adapter = FilActuAdapter(context, filActuList, R.layout.fil_actu_vertical)
+        // filActuRecyclerView.adapter = FilActuAdapter(context, arrayListOf())
         return view
     }
 }

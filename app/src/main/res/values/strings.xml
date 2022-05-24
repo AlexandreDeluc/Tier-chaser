@@ -99,6 +99,7 @@
     <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
     <string name="logo">logo</string>
     <string name="title_fil_actu">Votre fil d\'actualité</string>
+    <string name="img">img</string>
 
 
 </resources>

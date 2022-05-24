@@ -93,7 +93,28 @@ class TensorFlowTestActivity : AppCompatActivity() {
 // Releases model resources if no longer used.
             model.close()
 
-            uploadImage()
+                val progressDialog = ProgressDialog(this)
+                progressDialog.setMessage("Uploading file ...")
+                progressDialog.setCancelable(false)
+                progressDialog.show()
+
+                val formatter = SimpleDateFormat("yyyy_MM_dd_MM_mm_ss", Locale.getDefault())
+                val now = Date()
+                val fileName = formatter.format(now)
+
+                val ref = FirebaseStorage.getInstance().getReference("objectsImage/$fileName")
+
+                ref.putFile(imageUri)
+                    .addOnSuccessListener {
+                        binding.preview.setImageURI(imageUri)
+                        Toast.makeText(this, "Success", Toast.LENGTH_LONG).show()
+                        progressDialog.dismiss()
+                    }
+                    .addOnFailureListener {
+                        Toast.makeText(this, "Fail", Toast.LENGTH_LONG).show()
+                        progressDialog.dismiss()
+                    }
+
 
         })
     }
@@ -138,31 +159,5 @@ class TensorFlowTestActivity : AppCompatActivity() {
             }
         }
         return ind
-    }
-
-    private fun uploadImage(){
-
-        val progressDialog = ProgressDialog(this)
-        progressDialog.setMessage("Uploading file ...")
-        progressDialog.setCancelable(false)
-        progressDialog.show()
-
-        val formatter = SimpleDateFormat("yyyy_MM_dd_MM_mm_ss", Locale.getDefault())
-        val now = Date()
-        val fileName = formatter.format(now)
-
-        val ref = FirebaseStorage.getInstance().getReference("objectsImage/$fileName")
-
-            ref.putFile(imageUri)
-                .addOnSuccessListener {
-                    binding.preview.setImageURI(imageUri)
-                    Toast.makeText(this, "Success", Toast.LENGTH_LONG).show()
-                    progressDialog.dismiss()
-                }
-                .addOnFailureListener {
-                    Toast.makeText(this, "Fail", Toast.LENGTH_LONG).show()
-                    progressDialog.dismiss()
-                }
-
     }
 }

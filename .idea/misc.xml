@@ -14,17 +14,22 @@
         <entry key="..\:/Users/clemence.nadaud/AndroidStudioProjects/Tier-chaser/app/src/main/res/drawable/ic_photo.xml" value="0.3625" />
         <entry key="..\:/Users/clemence.nadaud/AndroidStudioProjects/Tier-chaser/app/src/main/res/drawable/ic_profile.xml" value="0.1" />
         <entry key="..\:/Users/clemence.nadaud/AndroidStudioProjects/Tier-chaser/app/src/main/res/layout/activity_edit_profil.xml" value="0.1" />
-        <entry key="..\:/Users/clemence.nadaud/AndroidStudioProjects/Tier-chaser/app/src/main/res/layout/activity_fil_actu.xml" value="0.33" />
+        <entry key="..\:/Users/clemence.nadaud/AndroidStudioProjects/Tier-chaser/app/src/main/res/layout/activity_fil_actu.xml" value="0.1" />
         <entry key="..\:/Users/clemence.nadaud/AndroidStudioProjects/Tier-chaser/app/src/main/res/layout/activity_home.xml" value="0.1" />
         <entry key="..\:/Users/clemence.nadaud/AndroidStudioProjects/Tier-chaser/app/src/main/res/layout/activity_loading.xml" value="0.1762917933130699" />
         <entry key="..\:/Users/clemence.nadaud/AndroidStudioProjects/Tier-chaser/app/src/main/res/layout/activity_login.xml" value="0.25" />
+        <entry key="..\:/Users/clemence.nadaud/AndroidStudioProjects/Tier-chaser/app/src/main/res/layout/activity_main.xml" value="0.1160081053698075" />
         <entry key="..\:/Users/clemence.nadaud/AndroidStudioProjects/Tier-chaser/app/src/main/res/layout/activity_maps.xml" value="0.1" />
         <entry key="..\:/Users/clemence.nadaud/AndroidStudioProjects/Tier-chaser/app/src/main/res/layout/activity_profil.xml" value="0.26197916666666665" />
         <entry key="..\:/Users/clemence.nadaud/AndroidStudioProjects/Tier-chaser/app/src/main/res/layout/activity_profile.xml" value="0.1" />
         <entry key="..\:/Users/clemence.nadaud/AndroidStudioProjects/Tier-chaser/app/src/main/res/layout/activity_publish.xml" value="0.1" />
         <entry key="..\:/Users/clemence.nadaud/AndroidStudioProjects/Tier-chaser/app/src/main/res/layout/activity_register.xml" value="0.33" />
+        <entry key="..\:/Users/clemence.nadaud/AndroidStudioProjects/Tier-chaser/app/src/main/res/layout/activity_show_all_images.xml" value="0.1" />
+        <entry key="..\:/Users/clemence.nadaud/AndroidStudioProjects/Tier-chaser/app/src/main/res/layout/activity_show_all_images_from_storage.xml" value="0.1" />
+        <entry key="..\:/Users/clemence.nadaud/AndroidStudioProjects/Tier-chaser/app/src/main/res/layout/activity_show_images.xml" value="0.11616161616161616" />
         <entry key="..\:/Users/clemence.nadaud/AndroidStudioProjects/Tier-chaser/app/src/main/res/layout/activity_show_object.xml" value="0.1" />
         <entry key="..\:/Users/clemence.nadaud/AndroidStudioProjects/Tier-chaser/app/src/main/res/layout/activity_tensor_flow_test.xml" value="0.1" />
+        <entry key="..\:/Users/clemence.nadaud/AndroidStudioProjects/Tier-chaser/app/src/main/res/layout/activity_test.xml" value="0.2390625" />
         <entry key="..\:/Users/clemence.nadaud/AndroidStudioProjects/Tier-chaser/app/src/main/res/layout/activity_verify.xml" value="0.17806484295845998" />
         <entry key="..\:/Users/clemence.nadaud/AndroidStudioProjects/Tier-chaser/app/src/main/res/layout/content_edit_profil.xml" value="0.19972826086956522" />
         <entry key="..\:/Users/clemence.nadaud/AndroidStudioProjects/Tier-chaser/app/src/main/res/layout/fil_actu_vertical.xml" value="0.18" />
@@ -36,7 +41,10 @@
         <entry key="..\:/Users/clemence.nadaud/AndroidStudioProjects/Tier-chaser/app/src/main/res/layout/fragment_second.xml" value="0.14947916666666666" />
         <entry key="..\:/Users/clemence.nadaud/AndroidStudioProjects/Tier-chaser/app/src/main/res/layout/fragment_show_object.xml" value="0.1" />
         <entry key="..\:/Users/clemence.nadaud/AndroidStudioProjects/Tier-chaser/app/src/main/res/layout/fragment_show_object2.xml" value="0.15625" />
+        <entry key="..\:/Users/clemence.nadaud/AndroidStudioProjects/Tier-chaser/app/src/main/res/layout/item.xml" value="0.1160081053698075" />
         <entry key="..\:/Users/clemence.nadaud/AndroidStudioProjects/Tier-chaser/app/src/main/res/layout/item_horizontal_object.xml" value="0.1" />
+        <entry key="..\:/Users/clemence.nadaud/AndroidStudioProjects/Tier-chaser/app/src/main/res/layout/item_image.xml" value="0.1160081053698075" />
+        <entry key="..\:/Users/clemence.nadaud/AndroidStudioProjects/Tier-chaser/app/src/main/res/layout/item_show_images.xml" value="0.36666666666666664" />
         <entry key="..\:/Users/clemence.nadaud/AndroidStudioProjects/Tier-chaser/app/src/main/res/layout/item_vertical_object.xml" value="0.1" />
         <entry key="..\:/Users/clemence.nadaud/AndroidStudioProjects/Tier-chaser/app/src/main/res/layout/item_vertical_profile.xml" value="0.17806484295845998" />
         <entry key="..\:/Users/clemence.nadaud/AndroidStudioProjects/Tier-chaser/app/src/main/res/layout/profil_vertical.xml" value="0.2630208333333333" />

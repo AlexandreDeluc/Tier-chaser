@@ -4,22 +4,9 @@ import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
-import fr.isen.deluc.tierchaser.FilActuRepository.Singleton.filActuList
-import fr.isen.deluc.tierchaser.ObjectRepository.Singleton.databaseRef
 import fr.isen.deluc.tierchaser.ObjectRepository.Singleton.objectList
 
 class FilActuRepository {
-
-    object Singleton {
-
-        //se connecter à la référence "Objects"
-        val databaseRef = FirebaseDatabase.getInstance().getReference("Objects")
-
-        //créer une liste qui va contenir nos objets
-        val filActuList = arrayListOf<ObjectModel>()
-
-    }
-
     fun updateData(callback: () -> Unit){
         //absorber les données depuis la databaseRef -> liste d'objets
         databaseRef.addValueEventListener(object : ValueEventListener {
@@ -35,7 +22,6 @@ class FilActuRepository {
                     //vérifier que l'objet n'est pas null
                     if(objet != null){
                         filActuList.add(objet)
-
                     }
                 }
                 //actionner le callback
@@ -49,5 +35,13 @@ class FilActuRepository {
     //mettre à jour un objet en BDD
     fun updateObject(objet: ObjectModel){
         databaseRef.child(objet.id).setValue(objet)
+    }
+
+    companion object {
+        //se connecter à la référence "Objects"
+        val databaseRef = FirebaseDatabase.getInstance().getReference("Objects")
+
+        //créer une liste qui va contenir nos objets
+        val filActuList = arrayListOf<ObjectModel>()
     }
 }
