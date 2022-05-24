@@ -14,6 +14,7 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
+import com.google.firebase.messaging.ktx.messaging
 import fr.isen.deluc.tierchaser.databinding.ActivityLoginBinding
 
 
@@ -98,6 +99,7 @@ class LoginActivity : AppCompatActivity() {
                         intent.putExtra("email_id", email)
 
                         Toast.makeText(this, "Account is verified, you are logged in", Toast.LENGTH_LONG).show()
+                        Firebase.messaging.subscribeToTopic("Notif")
                         finish()
                         startActivity(intent)
                     }
