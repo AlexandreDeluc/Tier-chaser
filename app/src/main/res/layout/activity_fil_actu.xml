@@ -22,14 +22,14 @@
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/filactu_recycler_view"
         android:layout_width="match_parent"
-        android:layout_height="200dp"
+        android:layout_height="match_parent"
+        android:layout_marginTop="50dp"
         android:orientation="vertical"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/title_fil_actu"
         tools:listitem="@layout/item"/>
-
 
     <FrameLayout
         android:id="@+id/fragment_container2"
